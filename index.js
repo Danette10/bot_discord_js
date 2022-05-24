@@ -11,14 +11,23 @@ client.once('ready', () => {
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
 
-    const { commandName } = interaction;
 
+    const { commandName } = interaction;
     if (commandName === 'ping') {
         await interaction.reply('Pong!');
     } else if (commandName === 'server') {
         await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
     } else if (commandName === 'user') {
         await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
+    }else if(commandName === 'clear'){
+
+        await interaction.channel.messages.fetch({ limit: 100}).then(messages => {
+            messages.forEach(message => {
+                    message.delete();
+            });
+        });
+        await interaction.reply('Tout les messages ont été supprimés !');
+
     }
 });
 
