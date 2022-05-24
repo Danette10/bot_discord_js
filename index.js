@@ -8,6 +8,12 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 client.once('ready', () => {
     console.log('Le bot est prêt à être utilisé !');
 });
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isCommand()) return;
+
+    const { commandName } = interaction;
+
+});
 
 // Login to Discord with your client's token
 client.login(token);
