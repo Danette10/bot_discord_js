@@ -15,6 +15,7 @@ const commands = [
                 .setDescription('Nombre de messages que vous voulez supprimer !')
                 .setRequired(true)
         ),
+    new SlashCommandBuilder().setName('embed').setDescription('Envoie un embed !')
 
 ]
 
