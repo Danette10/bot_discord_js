@@ -20,14 +20,17 @@ client.on('interactionCreate', async interaction => {
     } else if (commandName === 'user') {
         await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
     }else if(commandName === 'clear'){
-
-        await interaction.channel.messages.fetch({ limit: 100}).then(messages => {
-            messages.forEach(message => {
-                    message.delete();
-            });
-        });
-        await interaction.reply('Tout les messages ont été supprimés !');
-
+        let number = interaction.options.getInteger('number');
+        if(number >= 1 && number <= 100){
+            interaction.channel.messages.fetch({limit: number}).then(messages => {
+                    messages.forEach(message => {
+                        message.delete();
+                    });
+                    interaction.reply(`${number} messages supprimés !`);
+                });
+        }else{
+            interaction.reply({content: 'Veuillez entrer un nombre entre 1 et 100 !', ephemeral: true});
+        }
     }
 });
 

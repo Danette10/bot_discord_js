@@ -7,7 +7,14 @@ const commands = [
     new SlashCommandBuilder().setName('ping').setDescription('Replies with pong!'),
     new SlashCommandBuilder().setName('server').setDescription('Replies with server info!'),
     new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
-    new SlashCommandBuilder().setName('clear').setDescription('Supprime les messages !'),
+    new SlashCommandBuilder()
+        .setName('clear')
+        .setDescription('Supprime les messages !')
+        .addIntegerOption(option =>
+            option.setName('number')
+                .setDescription('Nombre de messages que vous voulez supprimer !')
+                .setRequired(true)
+        ),
 
 ]
 
