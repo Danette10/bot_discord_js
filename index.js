@@ -32,6 +32,8 @@ client.on('interactionCreate', async interaction => {
             interaction.reply({content: 'Veuillez entrer un nombre entre 1 et 100 !', ephemeral: true});
         }
     }
+    // delete Reply after 5 seconds
+    setTimeout(() => interaction.deleteReply(), 5000);
 });
 
 // Login to Discord with your client's token
