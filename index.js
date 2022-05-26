@@ -1,26 +1,8 @@
 const { Client, Intents } = require('discord.js');
-const { token } = require('./config.json');
-const { MessageEmbed } = require('discord.js');
+require("dotenv").config();
+//const { MessageEmbed } = require('discord.js');
 
 
-// EMBED
-const exampleEmbed = new MessageEmbed()
-    .setColor('#0099ff')
-    .setTitle('Some title')
-    .setURL('https://discord.js.org/')
-    .setAuthor({ name: 'Some name', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
-    .setDescription('Some description here')
-    .setThumbnail('https://i.imgur.com/AfFp7pu.png')
-    .addFields(
-        { name: 'Regular field title', value: 'Some value here' },
-        { name: '\u200B', value: '\u200B' },
-        { name: 'Inline field title', value: 'Some value here', inline: true },
-        { name: 'Inline field title', value: 'Some value here', inline: true },
-    )
-    .addField('Inline field title', 'Some value here', true)
-    .setImage('https://i.imgur.com/AfFp7pu.png')
-    .setTimestamp()
-    .setFooter({ text: 'Some footer text here', iconURL: 'https://i.imgur.com/AfFp7pu.png' });
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -41,10 +23,6 @@ client.on('interactionCreate', async interaction => {
     } else if (commandName === 'user') {
 
         await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
-
-    }else if(commandName === 'embed'){
-
-        interaction.reply({ embeds: [exampleEmbed] });
 
     }else if(commandName === 'clear'){
 
@@ -74,4 +52,4 @@ client.on('interactionCreate', async interaction => {
 });
 
 // Login to Discord with your client's token
-client.login(token);
+client.login(process.env.BOT_TOKEN);
