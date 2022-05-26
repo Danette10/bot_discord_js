@@ -10,6 +10,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
     console.log('Le bot est prêt à être utilisé !');
+
 });
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
@@ -46,6 +47,30 @@ client.on('interactionCreate', async interaction => {
         }else{
             interaction.reply({content: '**' + interaction.user.username + '**' + ', vous n\'avez pas la permission de supprimer des messages !', ephemeral: false});
         }
+
+    }else if(commandName === 'ban'){
+
+            if(interaction.member.permissions.has('BAN_MEMBERS')){
+
+
+
+                let user = interaction.options.getString('user');
+                if(user){
+
+                    let member = interaction.guild.members.cache.find(member => member.user.username === user);
+                    if(member){
+                        await member.ban();
+                        interaction.reply(`${member.user.username} a été banni !`);
+                    }else{
+                        interaction.reply(`L'utilisateur ${user} n'existe pas !`);
+                    }
+                }else{
+                    interaction.reply(`Veuillez entrer un nom d'utilisateur !`);
+                }
+
+            }else{
+                interaction.reply({content: '**' + interaction.user.username + '**' + ', vous n\'avez pas la permission de bannir des utilisateurs !', ephemeral: false});
+            }
 
     }
 

@@ -14,6 +14,14 @@ const commands = [
                 .setDescription('Nombre de messages que vous voulez supprimer !')
                 .setRequired(true)
         ),
+    new SlashCommandBuilder()
+        .setName('ban')
+        .setDescription('Bannit un utilisateur !')
+        .addStringOption(option =>
+        option.setName('user')
+            .setDescription('Nom d\'utilisateur de l\'utilisateur que vous voulez bannir !')
+            .setRequired(true)
+        ),
 
 ]
 
