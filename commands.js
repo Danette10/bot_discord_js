@@ -22,6 +22,18 @@ const commands = [
             .setDescription('Nom d\'utilisateur de l\'utilisateur que vous voulez bannir !')
             .setRequired(true)
         ),
+    new SlashCommandBuilder()
+        .setName('list')
+        .setDescription('Liste les membres du serveur !'),
+    new SlashCommandBuilder()
+        .setName('unban')
+        .setDescription('Unban un utilisateur !')
+        .addStringOption(option =>
+            option.setName('user')
+                .setDescription('Nom d\'utilisateur de l\'utilisateur que vous voulez unban !')
+                .setRequired(true)
+        ),
+
 
 ]
 
