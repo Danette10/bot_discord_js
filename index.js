@@ -13,7 +13,6 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS,Intents.FLAGS.GUILD_M
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
 
-
     console.log('Le bot est prêt à être utilisé !');
 
 
@@ -71,15 +70,16 @@ client.on('interactionCreate', async interaction => {
             let member = interaction.guild.members.cache.find(member => member.user.tag === user);
 
             if (member) {
-                await member.ban();
-                let embed = new MessageEmbed()
+                let embedBan = new MessageEmbed()
                     .setTitle('Bannissement')
                     .setColor('#ff0000')
                     .setImage(member.user.displayAvatarURL())
                     .addField('Utilisateur banni', member.user.tag)
                     .addField('Raison', reason)
-                    .setTimestamp();
-                interaction.channel.send({ embeds: [embed] });
+                    .setTimestamp()
+                    .setFooter({ text: 'Banissement effectué par ' + interaction.user.tag});
+                interaction.channel.send({ embeds: [embedBan] });
+                await member.ban();
             } else {
                 interaction.reply(`**${user}** n'est pas sur le serveur !`);
             }
@@ -91,8 +91,39 @@ client.on('interactionCreate', async interaction => {
             });
         }
     }else if (commandName === 'unban') {
+        if(interaction.member.permissions.has('BAN_MEMBERS')){
 
+            let user = interaction.options.getString('user');
+            let reason = interaction.options.getString('reason');
+
+            const fetchbans = interaction.guild.bans.fetch();
+            fetchbans.then(async bans => {
+                let bansString = bans.map(ban => ban.user.tag).join('\n');
+                if (bansString.includes(user)) {
+                    let userToUnban = bans.find(ban => ban.user.tag === user);
+
+                    let embedUnban = new MessageEmbed()
+                        .setTitle('Débannissement')
+                        .setColor('#00ff00')
+                        .setImage(userToUnban.user.displayAvatarURL())
+                        .addField('Utilisateur débanni', userToUnban.user.tag)
+                        .addField('Raison', reason)
+                        .setTimestamp()
+                        .setFooter({text: 'Débanissement effectué par ' + interaction.user.tag});
+                    interaction.channel.send({embeds: [embedUnban]});
+                    await interaction.guild.members.unban(userToUnban.user);
+                } else {
+                    interaction.reply(`**${user}** n'est pas banni !`);
+                }
+
+            });
+        }else{
+            interaction.reply({
+                content: '**' + interaction.user.username + '**' + ', vous n\'avez pas la permission de débannir des utilisateurs !',
+                ephemeral: false
+            });
         }
+    }
 
 });
 

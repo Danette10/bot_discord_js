@@ -37,6 +37,11 @@ const commands = [
             option.setName('user')
                 .setDescription('Nom d\'utilisateur de l\'utilisateur que vous voulez unban !')
                 .setRequired(true)
+        )
+        .addStringOption(option =>
+            option.setName('reason')
+                .setDescription('Raison du unban !')
+                .setRequired(true)
         ),
 
 
