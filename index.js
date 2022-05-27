@@ -5,7 +5,10 @@ require("dotenv").config();
 
 
 // Create a new client instance
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS,Intents.FLAGS.GUILD_MEMBERS,Intents.FLAGS.GUILD_PRESENCES,Intents.FLAGS.GUILD_BANS],
+
+
+});
 
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
@@ -15,6 +18,7 @@ client.once('ready', () => {
 
 
 });
+
 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
@@ -53,7 +57,6 @@ client.on('interactionCreate', async interaction => {
         }
 
     }else if(commandName === 'list'){
-
         let members = interaction.guild.members.cache.map(member => member.user.tag);
         let membersString = members.join('\n');
 
@@ -79,7 +82,9 @@ client.on('interactionCreate', async interaction => {
                 ephemeral: false
             });
         }
-    }
+    }else if (commandName === 'unban') {
+        
+        }
 
 });
 
