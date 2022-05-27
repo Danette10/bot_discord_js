@@ -18,6 +18,15 @@ client.once('ready', () => {
 
 });
 
+// Message de bienvenue
+client.on('guildMemberAdd', member => {
+     // member.send('Bienvenue sur le serveur !'); Send a private message
+     member.guild.channels.cache.get('979796820874100746').send(`${member} viens de rejoindre le serveur !`);
+
+
+
+});
+
 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
@@ -28,11 +37,15 @@ client.on('interactionCreate', async interaction => {
 
         await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
 
-    } else if (commandName === 'user') {
+    }
+
+    else if (commandName === 'user') {
 
         await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
 
-    }else if(commandName === 'clear'){
+    }
+
+    else if(commandName === 'clear'){
 
         if(interaction.member.permissions.has('MANAGE_MESSAGES')){
 
@@ -55,13 +68,17 @@ client.on('interactionCreate', async interaction => {
             interaction.reply({content: '**' + interaction.user.username + '**' + ', vous n\'avez pas la permission de supprimer des messages !', ephemeral: false});
         }
 
-    }else if(commandName === 'list'){
+    }
+
+    else if(commandName === 'list'){
         let members = interaction.guild.members.cache.map(member => member.user.tag);
         let membersString = members.join('\n');
 
         await interaction.reply(`Liste des membres du serveur : **\n${membersString}**`);
 
-    }else if(commandName === 'ban') {
+    }
+
+    else if(commandName === 'ban') {
 
         if (interaction.member.permissions.has('BAN_MEMBERS')) {
             let user = interaction.options.getString('user');
@@ -90,7 +107,9 @@ client.on('interactionCreate', async interaction => {
                 ephemeral: false
             });
         }
-    }else if (commandName === 'unban') {
+    }
+
+    else if (commandName === 'unban') {
         if(interaction.member.permissions.has('BAN_MEMBERS')){
 
             let user = interaction.options.getString('user');
@@ -123,6 +142,55 @@ client.on('interactionCreate', async interaction => {
                 ephemeral: false
             });
         }
+    }
+
+    else if(commandName === 'kick'){
+        if(interaction.member.permissions.has('KICK_MEMBERS')){
+
+            let user = interaction.options.getString('user');
+            let reason = interaction.options.getString('reason');
+
+            let member = interaction.guild.members.cache.find(member => member.user.tag === user);
+
+            if(member){
+                let embedKick = new MessageEmbed()
+                    .setTitle('Expulsion')
+                    .setColor('#ff0000')
+                    .setImage(member.user.displayAvatarURL())
+                    .addField('Utilisateur expulsé', member.user.tag)
+                    .addField('Raison', reason)
+                    .setTimestamp()
+                    .setFooter({text: 'Expulsion effectuée par ' + interaction.user.tag});
+                interaction.channel.send({embeds: [embedKick]});
+                await member.kick();
+            }else{
+                interaction.reply(`**${user}** n'est pas sur le serveur !`);
+            }
+
+        }else{
+            interaction.reply({
+                content: '**' + interaction.user.username + '**' + ', vous n\'avez pas la permission de kick des utilisateurs !',
+                ephemeral: false
+            });
+        }
+    }
+
+    else if(commandName === 'help'){
+        // Affiche la liste des commandes
+        let helpEmbed = new MessageEmbed()
+            .setTitle('Liste des commandes')
+            .setColor('#00ff00')
+            .addField('server', 'Affiche le nom du serveur et le nombre de membres')
+            .addField('user', 'Affiche votre tag et votre id')
+            .addField('clear', 'Supprime un nombre de messages')
+            .addField('list', 'Affiche la liste des membres du serveur')
+            .addField('ban', 'Bannit un utilisateur')
+            .addField('kick', 'Expulse un utilisateur')
+            .addField('unban', 'Débannit un utilisateur')
+            .addField('help', 'Affiche la liste des commandes')
+            .setTimestamp()
+            .setFooter({text: 'Commandes disponibles'});
+        interaction.reply({embeds: [helpEmbed]});
     }
 
 });

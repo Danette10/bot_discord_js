@@ -4,8 +4,18 @@ const { Routes } = require('discord-api-types/v9');
 const { clientId, guildId, token } = require('./config.json');
 
 const commands = [
-    new SlashCommandBuilder().setName('server').setDescription('Replies with server info!'),
-    new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
+    new SlashCommandBuilder()
+        .setName('help')
+        .setDescription('Affiche la liste des commandes'),
+
+    new SlashCommandBuilder()
+        .setName('server')
+        .setDescription('Replies with server info!'),
+
+    new SlashCommandBuilder()
+        .setName('user')
+        .setDescription('Replies with user info!'),
+
     new SlashCommandBuilder()
         .setName('clear')
         .setDescription('Supprime les messages !')
@@ -14,6 +24,7 @@ const commands = [
                 .setDescription('Nombre de messages que vous voulez supprimer !')
                 .setRequired(true)
         ),
+
     new SlashCommandBuilder()
         .setName('ban')
         .setDescription('Bannit un utilisateur !')
@@ -27,9 +38,11 @@ const commands = [
                 .setDescription('Raison du ban !')
                 .setRequired(true)
         ),
+
     new SlashCommandBuilder()
         .setName('list')
         .setDescription('Liste les membres du serveur !'),
+
     new SlashCommandBuilder()
         .setName('unban')
         .setDescription('Unban un utilisateur !')
@@ -41,6 +54,20 @@ const commands = [
         .addStringOption(option =>
             option.setName('reason')
                 .setDescription('Raison du unban !')
+                .setRequired(true)
+        ),
+
+    new SlashCommandBuilder()
+        .setName('kick')
+        .setDescription('Kick un utilisateur !')
+        .addStringOption(option =>
+            option.setName('user')
+                .setDescription('Nom d\'utilisateur de l\'utilisateur que vous voulez kick !')
+                .setRequired(true)
+        )
+        .addStringOption(option =>
+            option.setName('reason')
+                .setDescription('Raison du kick !')
                 .setRequired(true)
         ),
 
