@@ -1,16 +1,15 @@
 const { Client, Intents } = require('discord.js');
-require("dotenv").config();
 const { MessageEmbed } = require('discord.js');
 
 
+require("dotenv").config();
 
-// Create a new client instance
+
+
 const client = new Client({ intents: [Intents.FLAGS.GUILDS,Intents.FLAGS.GUILD_MEMBERS,Intents.FLAGS.GUILD_PRESENCES,Intents.FLAGS.GUILD_BANS],
-
 
 });
 
-// When the client is ready, run this code (only once)
 client.once('ready', () => {
 
     console.log('Le bot est prêt à être utilisé !');
@@ -18,7 +17,6 @@ client.once('ready', () => {
 
 });
 
-// Message de bienvenue
 client.on('guildMemberAdd', member => {
      // member.send('Bienvenue sur le serveur !'); Send a private message
      member.guild.channels.cache.get('979796820874100746').send(`${member} viens de rejoindre le serveur !`);
