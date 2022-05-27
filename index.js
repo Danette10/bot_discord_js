@@ -1,6 +1,6 @@
 const { Client, Intents } = require('discord.js');
 require("dotenv").config();
-//const { MessageEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 
 
@@ -66,12 +66,20 @@ client.on('interactionCreate', async interaction => {
 
         if (interaction.member.permissions.has('BAN_MEMBERS')) {
             let user = interaction.options.getString('user');
+            let reason = interaction.options.getString('reason');
 
             let member = interaction.guild.members.cache.find(member => member.user.tag === user);
 
             if (member) {
                 await member.ban();
-                interaction.reply(`**${user}** a été banni !`);
+                let embed = new MessageEmbed()
+                    .setTitle('Bannissement')
+                    .setColor('#ff0000')
+                    .setImage(member.user.displayAvatarURL())
+                    .addField('Utilisateur banni', member.user.tag)
+                    .addField('Raison', reason)
+                    .setTimestamp();
+                interaction.channel.send({ embeds: [embed] });
             } else {
                 interaction.reply(`**${user}** n'est pas sur le serveur !`);
             }
@@ -83,7 +91,7 @@ client.on('interactionCreate', async interaction => {
             });
         }
     }else if (commandName === 'unban') {
-        
+
         }
 
 });

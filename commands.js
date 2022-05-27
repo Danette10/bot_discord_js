@@ -21,6 +21,11 @@ const commands = [
         option.setName('user')
             .setDescription('Nom d\'utilisateur de l\'utilisateur que vous voulez bannir !')
             .setRequired(true)
+        )
+        .addStringOption(option =>
+            option.setName('reason')
+                .setDescription('Raison du ban !')
+                .setRequired(true)
         ),
     new SlashCommandBuilder()
         .setName('list')
