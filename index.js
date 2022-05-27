@@ -11,7 +11,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS,Intents.FLAGS.GUILD_M
 });
 
 client.once('ready', () => {
-    
+
     client.user.setActivity('/help pour la liste des commandes');
 
     console.log('Le bot est prêt à être utilisé !');
