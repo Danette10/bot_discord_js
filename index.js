@@ -15,9 +15,9 @@ client.once('ready', () => {
 
 
 });
+
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
-
 
     const { commandName } = interaction;
 
