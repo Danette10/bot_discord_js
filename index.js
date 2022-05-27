@@ -11,6 +11,8 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS,Intents.FLAGS.GUILD_M
 });
 
 client.once('ready', () => {
+    
+    client.user.setActivity('/help pour la liste des commandes');
 
     console.log('Le bot est prêt à être utilisé !');
 
@@ -20,8 +22,6 @@ client.once('ready', () => {
 client.on('guildMemberAdd', member => {
      // member.send('Bienvenue sur le serveur !'); Send a private message
      member.guild.channels.cache.get('979796820874100746').send(`${member} viens de rejoindre le serveur !`);
-
-
 
 });
 
