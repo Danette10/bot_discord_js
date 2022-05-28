@@ -9,7 +9,13 @@ require("dotenv").config();
 
 
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS,Intents.FLAGS.GUILD_MEMBERS,Intents.FLAGS.GUILD_PRESENCES,Intents.FLAGS.GUILD_BANS,Intents.FLAGS.GUILD_MESSAGE_REACTIONS],
+const client = new Client({ intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MEMBERS,
+        Intents.FLAGS.GUILD_PRESENCES,
+        Intents.FLAGS.GUILD_BANS,
+        Intents.FLAGS.GUILD_MESSAGE_REACTIONS
+    ],
 
 });
 
