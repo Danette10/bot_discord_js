@@ -1,5 +1,7 @@
 const { Client, Intents } = require('discord.js');
 const { MessageEmbed } = require('discord.js');
+const roleClaim = require('./utils/role-claim');
+
 const fs = require('fs');
 const birth = require('./storage/birthday.json')
 
@@ -7,7 +9,7 @@ require("dotenv").config();
 
 
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS,Intents.FLAGS.GUILD_MEMBERS,Intents.FLAGS.GUILD_PRESENCES,Intents.FLAGS.GUILD_BANS],
+const client = new Client({ intents: [Intents.FLAGS.GUILDS,Intents.FLAGS.GUILD_MEMBERS,Intents.FLAGS.GUILD_PRESENCES,Intents.FLAGS.GUILD_BANS,Intents.FLAGS.GUILD_MESSAGE_REACTIONS],
 
 });
 
@@ -16,8 +18,19 @@ client.once('ready', () => {
     client.user.setActivity('/help pour la liste des commandes');
 
     console.log('Le bot est prêt à être utilisé !');
+    roleClaim(client);
 
 
+
+});
+
+// ajouter des roles au clique sur un emoji
+client.on('messageReactionAdd', async (reaction, user) => {
+    if (reaction.emoji.name === ':PythonPNGFile:') {
+        const member = reaction.message.guild.members.cache.get(user.id);
+        if (!member) return;
+        await member.roles.add('824451353195184210');
+    }
 });
 
 client.on('guildMemberAdd', member => {
