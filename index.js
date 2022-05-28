@@ -1,6 +1,7 @@
 const { Client, Intents } = require('discord.js');
 const { MessageEmbed } = require('discord.js');
-
+const fs = require('fs');
+const date = require('./storage/birthday.json')
 
 require("dotenv").config();
 
@@ -173,6 +174,38 @@ client.on('interactionCreate', async interaction => {
         }
     }
 
+    else if(commandName === 'birthday'){
+        const birthday = interaction.options.getString('birthday').replace(/\s/g, '');
+        // Check if birthday is valid
+        if(birthday.length === 10 && birthday.match(/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/)){
+            if(date[interaction.user.tag]){
+                interaction.reply('Vous avez déja enregistré votre anniversaire !');
+            }else{
+                date[interaction.user.tag] = {
+                    birthday: birthday,
+                }
+                fs.writeFile('storage/birthday.json', JSON.stringify(date), err => {
+                    if(err) console.log(err);
+                });
+                interaction.reply('Votre anniversaire a bien été enregistré ! Vous etes né le ' + '**' + date[interaction.user.tag].birthday + '**');
+            }
+        }else{
+            interaction.reply('La date saisie est invalide !');
+        }
+
+    }
+
+    else if(commandName === 'mybirthday'){
+        if(date[interaction.user.tag]){
+            interaction.reply('Votre anniversaire est le ' + '**' + date[interaction.user.tag].birthday + '**');
+        }else{
+            interaction.reply('Vous n\'avez pas enregistré votre anniversaire ! Saisissez la commande **/birthday** pour enregistrer votre anniversaire !');
+        }
+    }
+
+
+
+
     else if(commandName === 'help'){
         // Affiche la liste des commandes
         let helpEmbed = new MessageEmbed()
@@ -185,6 +218,8 @@ client.on('interactionCreate', async interaction => {
             .addField('ban', 'Bannit un utilisateur')
             .addField('kick', 'Expulse un utilisateur')
             .addField('unban', 'Débannit un utilisateur')
+            .addField('birthday', 'Enregistre votre anniversaire')
+            .addField('mybirthday', 'Affiche votre anniversaire')
             .addField('help', 'Affiche la liste des commandes')
             .setTimestamp()
             .setFooter({text: 'Commandes disponibles'});
