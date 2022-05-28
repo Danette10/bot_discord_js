@@ -1,7 +1,7 @@
 const { Client, Intents } = require('discord.js');
 const { MessageEmbed } = require('discord.js');
 const fs = require('fs');
-const date = require('./storage/birthday.json')
+const birth = require('./storage/birthday.json')
 
 require("dotenv").config();
 
@@ -175,31 +175,49 @@ client.on('interactionCreate', async interaction => {
     }
 
     else if(commandName === 'birthday'){
+
         const birthday = interaction.options.getString('birthday').replace(/\s/g, '');
-        // Check if birthday is valid
+
         if(birthday.length === 10 && birthday.match(/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/)){
-            if(date[interaction.user.tag]){
+
+            if(birth[interaction.user.tag]){
+
                 interaction.reply('Vous avez déja enregistré votre anniversaire !');
+
             }else{
-                date[interaction.user.tag] = {
+
+                birth[interaction.user.tag] = {
                     birthday: birthday,
                 }
-                fs.writeFile('storage/birthday.json', JSON.stringify(date), err => {
+
+                fs.writeFile('storage/birthday.json', JSON.stringify(birth), err => {
+
                     if(err) console.log(err);
+
                 });
-                interaction.reply('Votre anniversaire a bien été enregistré ! Vous etes né le ' + '**' + date[interaction.user.tag].birthday + '**');
+
+                interaction.reply('Votre anniversaire a bien été enregistré ! Vous etes né le ' + '**' + birth[interaction.user.tag].birthday + '**');
+
             }
+
         }else{
+
             interaction.reply('La date saisie est invalide !');
+
         }
 
     }
 
     else if(commandName === 'mybirthday'){
-        if(date[interaction.user.tag]){
-            interaction.reply('Votre anniversaire est le ' + '**' + date[interaction.user.tag].birthday + '**');
+
+        if(birth[interaction.user.tag]){
+
+            interaction.reply('Votre anniversaire est le ' + '**' + birth[interaction.user.tag].birthday + '**');
+
         }else{
+
             interaction.reply('Vous n\'avez pas enregistré votre anniversaire ! Saisissez la commande **/birthday** pour enregistrer votre anniversaire !');
+
         }
     }
 
