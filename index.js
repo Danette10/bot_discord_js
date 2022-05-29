@@ -256,7 +256,7 @@ client.on('interactionCreate', async interaction => {
         // Affiche la liste des commandes
         let helpEmbed = new MessageEmbed()
             .setTitle('Liste des commandes')
-            .setColor('#00ff00')
+            .setColor('#0099ff')
             .addField('server', 'Affiche le nom du serveur et le nombre de membres')
             .addField('user', 'Affiche votre tag et votre id')
             .addField('clear', 'Supprime un nombre de messages')

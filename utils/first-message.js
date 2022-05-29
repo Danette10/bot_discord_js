@@ -47,7 +47,8 @@ module.exports = (channel, text, reactions) => {
     channel.messages.fetch().then(messages => {
         if (messages.size === 0) {
             initFirstMessage(channel, text, reactions);
-        } else if(messages.size === 1) reactions
+        } else if(messages.size === 1) {
             editFirstMessage(messages, text, reactions);
-        })
+        }
+    })
 }
