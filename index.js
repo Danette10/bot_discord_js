@@ -40,8 +40,17 @@ client.on('messageReactionAdd', async (reaction, user) => {
 });
 
 client.on('guildMemberAdd', member => {
-     // member.send('Bienvenue sur le serveur !'); Send a private message
-     member.guild.channels.cache.get('979796820874100746').send(`${member} viens de rejoindre le serveur !`);
+
+    let embedWelcome = new MessageEmbed()
+        .setTitle(`Bienvenue sur le serveur ${member.guild.name} !`)
+        .setThumbnail(member.guild.iconURL())
+        .setDescription(`Bienvenue ${member} sur le serveur !`)
+        .setColor('#00ff00')
+        .setImage(member.user.displayAvatarURL())
+        .setTimestamp()
+
+
+    member.guild.channels.cache.get('979796820874100746').send({ embeds: [embedWelcome] });
 
 });
 
