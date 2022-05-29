@@ -68,7 +68,8 @@ client.on('interactionCreate', async interaction => {
 
     else if (commandName === 'user') {
 
-        await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
+        await interaction.reply(`**Ton pseudo:** ${interaction.user.tag}\n**Ton ID:** ${interaction.user.id}`);
+
 
     }
 
