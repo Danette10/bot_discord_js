@@ -85,6 +85,8 @@ const commands = [
         .setDescription('Affiche ton anniversaire !'),
 
 
+
+
 ]
 
     .map(command => command.toJSON());

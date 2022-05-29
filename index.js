@@ -24,6 +24,8 @@ client.once('ready', () => {
     client.user.setActivity('/help pour la liste des commandes');
 
     console.log('Le bot est prêt à être utilisé !');
+
+
     roleClaim(client);
 
 
@@ -53,6 +55,7 @@ client.on('guildMemberAdd', member => {
     member.guild.channels.cache.get('979796820874100746').send({ embeds: [embedWelcome] });
 
 });
+
 
 
 client.on('interactionCreate', async interaction => {
@@ -265,16 +268,16 @@ client.on('interactionCreate', async interaction => {
         let helpEmbed = new MessageEmbed()
             .setTitle('Liste des commandes')
             .setColor('#0099ff')
-            .addField('server', 'Affiche le nom du serveur et le nombre de membres')
-            .addField('user', 'Affiche votre tag et votre id')
-            .addField('clear', 'Supprime un nombre de messages')
-            .addField('list', 'Affiche la liste des membres du serveur')
-            .addField('ban', 'Bannit un utilisateur')
-            .addField('kick', 'Expulse un utilisateur')
-            .addField('unban', 'Débannit un utilisateur')
-            .addField('birthday', 'Enregistre votre anniversaire')
-            .addField('mybirthday', 'Affiche votre anniversaire')
-            .addField('help', 'Affiche la liste des commandes')
+            .addField('/server', 'Affiche le nom du serveur et le nombre de membres')
+            .addField('/user', 'Affiche votre tag et votre id')
+            .addField('/clear', 'Supprime un nombre de messages')
+            .addField('/list', 'Affiche la liste des membres du serveur')
+            .addField('/ban', 'Bannit un utilisateur')
+            .addField('/kick', 'Expulse un utilisateur')
+            .addField('/unban', 'Débannit un utilisateur')
+            .addField('/birthday', 'Enregistre votre anniversaire')
+            .addField('/mybirthday', 'Affiche votre anniversaire')
+            .addField('/help', 'Affiche la liste des commandes')
             .setTimestamp()
             .setFooter({text: 'Commandes disponibles'});
         interaction.reply({embeds: [helpEmbed]});
