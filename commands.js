@@ -83,7 +83,7 @@ const commands = [
     new SlashCommandBuilder()
         .setName('mybirthday')
         .setDescription('Affiche ton anniversaire !'),
-
+    
 
 ]
 
