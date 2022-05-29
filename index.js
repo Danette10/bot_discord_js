@@ -32,7 +32,6 @@ client.once('ready', () => {
 
 });
 
-// ajouter des roles au clique sur un emoji
 client.on('messageReactionAdd', async (reaction, user) => {
     if (reaction.emoji.name === ':PythonPNGFile:') {
         const member = reaction.message.guild.members.cache.get(user.id);
