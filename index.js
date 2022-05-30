@@ -2,8 +2,7 @@ const { Client, Intents } = require('discord.js');
 const { MessageEmbed } = require('discord.js');
 const roleClaim = require('./utils/role-claim');
 
-const fs = require('fs');
-const birth = require('./storage/birthday.json')
+const Enmap = require("enmap");
 
 require("dotenv").config();
 
@@ -213,49 +212,35 @@ client.on('interactionCreate', async interaction => {
     }
 
     else if(commandName === 'birthday'){
-
         const birthday = interaction.options.getString('birthday').replace(/\s/g, '');
-
-        if(birthday.length === 10 && birthday.match(/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/)){
-
-            if(birth[interaction.user.tag]){
-
-                interaction.reply('Vous avez déja enregistré votre anniversaire !');
-
-            }else{
-
-                birth[interaction.user.tag] = {
+        interaction.birth = new Enmap({ name: "birthday" });
+        interaction.birth.ensure(interaction.user.tag, {
+            birthday: "",
+        });
+        let birthMember = interaction.birth.get(interaction.user.tag);
+        if(birthday.length === 10 && birthday.match(/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/)) {
+            if (birthMember.birthday === "") {
+                interaction.birth.set(interaction.user.tag, {
                     birthday: birthday,
-                }
-
-                fs.writeFile('storage/birthday.json', JSON.stringify(birth), err => {
-
-                    if(err) console.log(err);
-
                 });
-
-                interaction.reply('Votre anniversaire a bien été enregistré ! Vous etes né le ' + '**' + birth[interaction.user.tag].birthday + '**');
-
+                interaction.reply(`Votre anniversaire a été enregistré ! Vous etes né le **${birthday}**`);
+            } else if (birthMember.birthday === birthday) {
+                interaction.reply(`Votre anniversaire est déjà enregistré ! Vous etes né le **${birthMember.birthday}**`);
+            }else {
+                interaction.reply(`Votre anniversaire est déjà enregistré ! Vous etes né le **${birthMember.birthday}**`);
             }
-
-        }else{
-
-            interaction.reply('La date saisie est invalide !');
-
+        }else {
+            interaction.reply(`Votre anniversaire n'est pas valide !`);
         }
-
     }
 
     else if(commandName === 'mybirthday'){
-
-        if(birth[interaction.user.tag]){
-
-            interaction.reply('Votre anniversaire est le ' + '**' + birth[interaction.user.tag].birthday + '**');
-
+        interaction.birth = new Enmap({ name: "birthday" });
+        let birthMember = interaction.birth.get(interaction.user.tag);
+        if(birthMember.birthday === ""){
+            interaction.reply(`Vous n'avez pas encore enregistré votre anniversaire !`);
         }else{
-
-            interaction.reply('Vous n\'avez pas enregistré votre anniversaire ! Saisissez la commande **/birthday** pour enregistrer votre anniversaire !');
-
+            interaction.reply(`Votre anniversaire est le **${birthMember.birthday}**`);
         }
     }
 
