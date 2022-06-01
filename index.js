@@ -383,33 +383,8 @@ client.on('interactionCreate', async interaction => {
 
     }
 
-    else if(commandName === 'dewly'){
-        const images =  [
-            'https://thumbs.dreamstime.com/b/lapin-avec-un-coeur-17781905.jpg',
-            'https://img.freepik.com/vecteurs-libre/main-dessiner-lapin-coeur_43119-488.jpg',
-            'https://thumbs.dreamstime.com/b/cheval-blanc-avec-le-coeur-dans-la-bouche-valentine-38923228.jpg',
-            'https://i.pinimg.com/originals/7a/b4/4f/7ab44f7f99d3aab095dbe6112f47c898.gif',
-            'https://i.kym-cdn.com/photos/images/newsfeed/001/261/630/32a.gif'
-        ];
-        const description = [
-            "Pour la plus belle et la plus adorable",
-            "Océane, la plus belle des étoiles",
-            "Ce cadeau pas ouf est pour toi, c'est une petite attention que je te porte",
-            ];
-        const citation = description[Math.floor(Math.random() * description.length)];
 
-        const image = images[Math.floor(Math.random() * images.length)];
 
-        const embedDewly = new MessageEmbed()
-            .setTitle('Dewly')
-            .setColor('#194805')
-            .setDescription(citation)
-            .setImage(image)
-            .setTimestamp()
-
-        interaction.channel.send({embeds: [embedDewly]});
-
-    }
 
     else if(commandName === 'help'){
         // Affiche la liste des commandes
@@ -429,7 +404,6 @@ client.on('interactionCreate', async interaction => {
             .addField('/countmessage', 'Affiche le nombre de message dans le salon')
             .addField('!pendu', 'Joue au pendu')
             .addField('/winpendu', 'Affiche le nombre de parties gagnées au pendu')
-            .addField('/dewly', 'Pour dewly')
             .setTimestamp()
             .setFooter({text: 'Commandes disponibles'});
         interaction.reply({embeds: [helpEmbed]});

@@ -92,9 +92,7 @@ const commands = [
         .setName('winpendu')
         .setDescription('Vos victoires sur le jeu du pendu !'),
 
-    new SlashCommandBuilder()
-        .setName('dewly')
-        .setDescription('Commande pour dewly !'),
+
 
 ]
 
