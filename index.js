@@ -49,6 +49,21 @@ client.on('messageCreate', async (message) => {
             'orange',
             'cerise',
             'fraise',
+            'kiwi',
+            'poire',
+            'prune',
+            'pêche',
+            'raisin',
+            'chat',
+            'chien',
+            'oiseau',
+            'lion',
+            'tigre',
+            'singe',
+            'poule',
+            'cheval',
+            'chèvre',
+            'vache',
         ];
         const word = words[Math.floor(Math.random() * words.length)];
 
