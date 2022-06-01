@@ -55,8 +55,68 @@ client.on('messageCreate', async (message) => {
         const letters = word.split('');
         const hiddenWord = '#'.repeat(word.length);
         let tries = 0;
-    }
-});
+        console.log(word);
+
+        const guessedLetters = [];
+        const guessedWords = [];
+        const embedPendu = new MessageEmbed()
+            .setColor('#0099ff')
+            .setTitle('Pendu')
+            .setDescription(`Le mot à deviner est : ${hiddenWord}`)
+        message.channel.send({ embeds: [embedPendu] });
+        const filter = (response) => {
+            return letters.includes(response.content.toLowerCase());
+        }
+        const collector = message.channel.createMessageCollector(filter, { time: 60000 });
+        collector.on('collect', (response) => {
+            const userResponse = response.content.toLowerCase();
+            if (guessedWords.includes(userResponse)) {
+                return response.reply('Vous avez déjà essayé ce mot !');
+            }
+            if (userResponse.length !== 1) return;
+            if (guessedLetters.includes(userResponse)) {
+                return response.reply('Vous avez déjà essayé cette lettre !');
+            }
+            if (!letters.includes(userResponse)) {
+                tries++;
+                guessedWords.push(userResponse);
+                embedPendu.setDescription(`Le mot à deviner est : ${hiddenWord}`);
+                embedPendu.setFooter({text: `Tentatives restantes : ${3 - tries}`});
+                message.channel.send({ embeds: [embedPendu] });
+                if (tries === 3) {
+                    embedPendu.setDescription(`Le mot à deviner est : ${word}`);
+                    embedPendu.setFooter({text: 'Vous avez perdu !'});
+                    message.channel.send({ embeds: [embedPendu] });
+                }
+            } else {
+                guessedLetters.push(userResponse);
+                let hiddenWord2 = '';
+                letters.forEach((letter) => {
+                    if (guessedLetters.includes(letter)) {
+                        hiddenWord2 += letter;
+                    } else {
+                        hiddenWord2 += '#';
+                    }
+                });
+                embedPendu.setDescription(`Le mot à deviner est : ${hiddenWord2}`);
+                embedPendu.setFooter({text: `Tentatives restantes : ${3 - tries}`});
+                message.channel.send({ embeds: [embedPendu] });
+
+                if (hiddenWord2 === word) {
+                    embedPendu.setFooter({text: 'Vous avez gagné !'});
+                    message.channel.send({ embeds: [embedPendu] });
+
+                    const result = new Enmap({name: 'resultPendu'});
+                    result.set(message.author.id, {
+                        win: result.get(message.author.id) ? result.get(message.author.id).win + 1 : 1,
+                        lose: result.get(message.author.id) ? result.get(message.author.id).lose : 0,
+                    });
+                    }
+                }
+            });
+        }
+
+    });
 
 client.on('guildMemberAdd', member => {
 
@@ -296,6 +356,7 @@ client.on('interactionCreate', async interaction => {
             .addField('/mybirthday', 'Affiche votre anniversaire')
             .addField('/help', 'Affiche la liste des commandes')
             .addField('/countmessage', 'Affiche le nombre de message dans le salon')
+            .addField('pendu', 'Joue au pendu')
             .setTimestamp()
             .setFooter({text: 'Commandes disponibles'});
         interaction.reply({embeds: [helpEmbed]});
