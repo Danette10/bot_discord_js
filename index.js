@@ -388,6 +388,8 @@ client.on('interactionCreate', async interaction => {
             'https://thumbs.dreamstime.com/b/lapin-avec-un-coeur-17781905.jpg',
             'https://img.freepik.com/vecteurs-libre/main-dessiner-lapin-coeur_43119-488.jpg',
             'https://thumbs.dreamstime.com/b/cheval-blanc-avec-le-coeur-dans-la-bouche-valentine-38923228.jpg',
+            'https://i.pinimg.com/originals/7a/b4/4f/7ab44f7f99d3aab095dbe6112f47c898.gif',
+            'https://i.kym-cdn.com/photos/images/newsfeed/001/261/630/32a.gif'
         ];
         const description = [
             "Pour la plus belle et la plus adorable",
