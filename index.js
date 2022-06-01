@@ -42,7 +42,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 });
 
 client.on('messageCreate', async (message) => {
-    if (message.content === 'pendu') {
+    if (message.content === '!pendu') {
         const words = [
             'pomme',
             'banane',
@@ -385,7 +385,7 @@ client.on('interactionCreate', async interaction => {
             .addField('/mybirthday', 'Affiche votre anniversaire')
             .addField('/help', 'Affiche la liste des commandes')
             .addField('/countmessage', 'Affiche le nombre de message dans le salon')
-            .addField('pendu', 'Joue au pendu')
+            .addField('!pendu', 'Joue au pendu')
             .addField('/winpendu', 'Affiche le nombre de parties gagnées au pendu')
             .setTimestamp()
             .setFooter({text: 'Commandes disponibles'});
