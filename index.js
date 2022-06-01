@@ -345,9 +345,13 @@ client.on('interactionCreate', async interaction => {
             interaction.pendu.set(interaction.user.id, {
                 win: 0,
             });
-            interaction.reply(`Vous n'avez pas encore de victoire !`);
+            interaction.reply(`Vous n'avez pas encore de victoire !`, {
+                ephemeral: true
+            });
         }else {
-            interaction.reply(`Vous avez gagné **${penduMember.win}** parties au pendu !`);
+            interaction.reply(`Vous avez gagné **${penduMember.win}** parties au pendu !`, {
+                ephemeral: true
+            });
         }
 
     }
