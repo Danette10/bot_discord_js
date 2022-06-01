@@ -247,6 +247,8 @@ client.on('interactionCreate', async interaction => {
 
 
 
+
+
     else if(commandName === 'help'){
         // Affiche la liste des commandes
         let helpEmbed = new MessageEmbed()
