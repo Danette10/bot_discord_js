@@ -84,6 +84,10 @@ const commands = [
         .setName('mybirthday')
         .setDescription('Affiche ton anniversaire !'),
 
+    new SlashCommandBuilder()
+        .setName('countmessage')
+        .setDescription('Compte le nombre de messages dans le salon !'),
+
 
 
 

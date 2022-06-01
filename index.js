@@ -13,7 +13,9 @@ const client = new Client({ intents: [
         Intents.FLAGS.GUILD_MEMBERS,
         Intents.FLAGS.GUILD_PRESENCES,
         Intents.FLAGS.GUILD_BANS,
-        Intents.FLAGS.GUILD_MESSAGE_REACTIONS
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.GUILD_MESSAGE_TYPING,
+        Intents.FLAGS.DIRECT_MESSAGES,
     ],
 
 });
@@ -36,6 +38,23 @@ client.on('messageReactionAdd', async (reaction, user) => {
         const member = reaction.message.guild.members.cache.get(user.id);
         if (!member) return;
         await member.roles.add('824451353195184210');
+    }
+});
+
+client.on('messageCreate', async (message) => {
+    if (message.content === 'pendu') {
+        const words = [
+            'pomme',
+            'banane',
+            'orange',
+            'cerise',
+            'fraise',
+        ];
+        const word = words[Math.floor(Math.random() * words.length)];
+        // Découper le mot en lettres
+        const letters = word.split('');
+        const hiddenWord = '#'.repeat(word.length);
+        let tries = 0;
     }
 });
 
@@ -244,7 +263,19 @@ client.on('interactionCreate', async interaction => {
         }
     }
 
+    else if(commandName === 'countmessage'){
+        // Compte le nombre de message dans le salon
+        let count = 0;
+        interaction.channel.messages.fetch({ limit: 100 }).then(messages => {
+            messages.forEach(() => {
+                count++;
+            });
+            interaction.reply(`Il y a **${count}** messages dans ce salon !`);
 
+            setTimeout(() => interaction.deleteReply(), 5000);
+
+        });
+    }
 
 
 
@@ -264,6 +295,7 @@ client.on('interactionCreate', async interaction => {
             .addField('/birthday', 'Enregistre votre anniversaire')
             .addField('/mybirthday', 'Affiche votre anniversaire')
             .addField('/help', 'Affiche la liste des commandes')
+            .addField('/countmessage', 'Affiche le nombre de message dans le salon')
             .setTimestamp()
             .setFooter({text: 'Commandes disponibles'});
         interaction.reply({embeds: [helpEmbed]});
