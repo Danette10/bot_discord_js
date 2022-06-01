@@ -337,7 +337,20 @@ client.on('interactionCreate', async interaction => {
         });
     }
 
+    else if(commandName === 'winpendu'){
+        // Chercher les victoires du joueur dans la base de données
+        interaction.pendu = new Enmap({ name: "resultpendu" });
+        let penduMember = interaction.pendu.get(interaction.user.id);
+        if(penduMember === undefined){
+            interaction.pendu.set(interaction.user.id, {
+                win: 0,
+            });
+            interaction.reply(`Vous n'avez pas encore de victoire !`);
+        }else {
+            interaction.reply(`Vous avez gagné **${penduMember.win}** parties au pendu !`);
+        }
 
+    }
 
 
     else if(commandName === 'help'){
@@ -357,6 +370,7 @@ client.on('interactionCreate', async interaction => {
             .addField('/help', 'Affiche la liste des commandes')
             .addField('/countmessage', 'Affiche le nombre de message dans le salon')
             .addField('pendu', 'Joue au pendu')
+            .addField('/winpendu', 'Affiche le nombre de parties gagnées au pendu')
             .setTimestamp()
             .setFooter({text: 'Commandes disponibles'});
         interaction.reply({embeds: [helpEmbed]});

@@ -88,6 +88,9 @@ const commands = [
         .setName('countmessage')
         .setDescription('Compte le nombre de messages dans le salon !'),
 
+    new SlashCommandBuilder()
+        .setName('winpendu')
+        .setDescription('Vos victoires sur le jeu du pendu !'),
 
 
 
