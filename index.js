@@ -51,14 +51,17 @@ client.on('messageCreate', async (message) => {
             'fraise',
         ];
         const word = words[Math.floor(Math.random() * words.length)];
-        // Découper le mot en lettres
+
         const letters = word.split('');
+
         const hiddenWord = '#'.repeat(word.length);
+
         let tries = 0;
-        console.log(word);
 
         const guessedLetters = [];
+
         const guessedWords = [];
+
         const embedPendu = new MessageEmbed()
             .setColor('#0099ff')
             .setTitle('Pendu')
@@ -71,22 +74,28 @@ client.on('messageCreate', async (message) => {
         collector.on('collect', (response) => {
             const userResponse = response.content.toLowerCase();
             if (guessedWords.includes(userResponse)) {
-                return response.reply('Vous avez déjà essayé ce mot !');
+                response.reply('Vous avez déjà essayé ce mot !');
             }
             if (userResponse.length !== 1) return;
             if (guessedLetters.includes(userResponse)) {
-                return response.reply('Vous avez déjà essayé cette lettre !');
+                response.reply('Vous avez déjà essayé cette lettre !');
             }
             if (!letters.includes(userResponse)) {
                 tries++;
                 guessedWords.push(userResponse);
-                embedPendu.setDescription(`Le mot à deviner est : ${hiddenWord}`);
-                embedPendu.setFooter({text: `Tentatives restantes : ${3 - tries}`});
-                message.channel.send({ embeds: [embedPendu] });
-                if (tries === 3) {
-                    embedPendu.setDescription(`Le mot à deviner est : ${word}`);
+                if(tries !== 3){
+                    embedPendu.setDescription(`Le mot à deviner est : ${hiddenWord}`);
+                    embedPendu.setFooter({text: `Tentatives restantes : ${3 - tries}`});
+                    message.channel.send({ embeds: [embedPendu] });
+                }else{
+                    embedPendu.setTitle('Perdu !');
+                    embedPendu.setDescription(`Le mot était : ${word}`);
                     embedPendu.setFooter({text: 'Vous avez perdu !'});
                     message.channel.send({ embeds: [embedPendu] });
+
+
+                    collector.stop();
+
                 }
             } else {
                 guessedLetters.push(userResponse);
@@ -98,13 +107,16 @@ client.on('messageCreate', async (message) => {
                         hiddenWord2 += '#';
                     }
                 });
-                embedPendu.setDescription(`Le mot à deviner est : ${hiddenWord2}`);
-                embedPendu.setFooter({text: `Tentatives restantes : ${3 - tries}`});
-                message.channel.send({ embeds: [embedPendu] });
-
-                if (hiddenWord2 === word) {
+                if (hiddenWord2.includes('#')) {
+                    embedPendu.setDescription(`Le mot à deviner est : ${hiddenWord2}`);
+                    embedPendu.setFooter({text: `Tentatives restantes : ${3 - tries}`});
+                    message.channel.send({ embeds: [embedPendu] });
+                }else if (hiddenWord2 === word) {
+                    embedPendu.setTitle('Bravo !');
+                    embedPendu.setDescription(`Le mot était : ${hiddenWord2}`);
                     embedPendu.setFooter({text: 'Vous avez gagné !'});
                     message.channel.send({ embeds: [embedPendu] });
+                    collector.stop();
 
                     const result = new Enmap({name: 'resultPendu'});
                     result.set(message.author.id, {
