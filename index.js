@@ -435,19 +435,24 @@ client.on('interactionCreate', async interaction => {
         let helpEmbed = new MessageEmbed()
             .setTitle('Liste des commandes')
             .setColor('#0099ff')
-            .addField('/server', 'Affiche le nom du serveur et le nombre de membres')
-            .addField('/user', 'Affiche votre tag et votre id')
-            .addField('/clear', 'Supprime un nombre de messages')
-            .addField('/list', 'Affiche la liste des membres du serveur')
-            .addField('/ban', 'Bannit un utilisateur')
-            .addField('/kick', 'Expulse un utilisateur')
-            .addField('/unban', 'Débannit un utilisateur')
-            .addField('/birthday', 'Enregistre votre anniversaire')
-            .addField('/mybirthday', 'Affiche votre anniversaire')
-            .addField('/help', 'Affiche la liste des commandes')
-            .addField('/countmessage', 'Affiche le nombre de message dans le salon')
-            .addField('!pendu', 'Joue au pendu')
-            .addField('/winpendu', 'Affiche le nombre de parties gagnées au pendu')
+            .setDescription("/help : Affiche la liste des commandes" +"\n\n"+
+                "**__INFO__**" +
+                    "\n\n> /server : Affiche le nom du serveur et le nombre de membres" +
+                    "\n> /user : Affiche votre tag et votre id" +
+                "\n\n**__MODERATION__**" +
+                    "\n\n> /ban : Ban un utilisateur" +
+                    "\n> /unban : Unban un utilisateur" +
+                    "\n> /kick : Kick un utilisateur" +
+                    "\n> /list : Affiche la liste des membres du serveur" +
+                    "\n> /countmessage : Affiche le nombre de message dans le salon" +
+                    "\n> /clear : Supprime un nombre de messages" +
+                "\n\n**__JEUX__**" +
+                    "\n\n> /pendu : Joue au pendu" +
+                    "\n> /winpendu : Affiche le nombre de parties gagnées au pendu" +
+                "\n\n**__AUTRES__**" +
+                    "\n\n> /birthday : Enregistre votre anniversaire" +
+                    "\n> /mybirthday : Affiche votre anniversaire" +
+                ")")
             .setTimestamp()
             .setFooter({text: 'Commandes disponibles'});
         interaction.reply({embeds: [helpEmbed]});
