@@ -188,6 +188,18 @@ client.on('guildMemberAdd', member => {
 
 });
 
+client.on('guildMemberRemove', member => {
+
+        let embedBye = new MessageEmbed()
+            .setTitle(`Au revoir sur le serveur ${member.guild.name} !`)
+            .setThumbnail(member.guild.iconURL())
+            .setDescription(`Au revoir ${member} à très bientôt !`)
+            .setColor('#3b0764')
+            .setImage(member.user.displayAvatarURL())
+            .setTimestamp()
+
+        member.guild.channels.cache.get('981893347759226900').send({ embeds: [embedBye] });
+});
 
 
 client.on('interactionCreate', async interaction => {
