@@ -100,7 +100,6 @@ client.on('messageCreate', async (message) => {
                 }
                 if (!letters.includes(userResponse)) {
                     tries++;
-                    console.log(tries);
                     guessedWords.push(userResponse);
 
                     if(tries === 2) {
@@ -129,6 +128,10 @@ client.on('messageCreate', async (message) => {
                         embedPendu.setImage('https://cdn.discordapp.com/attachments/777525285558026273/981847308490666064/pendu_7.png');
                         embedPendu.setTimestamp();
                         message.channel.send({ embeds: [embedPendu] });
+
+                        message.channel.messages.fetch({ limit: 100 }).then(messages => {
+                            message.channel.bulkDelete(messages);
+                        });
                         collector.stop();
                     }
                 } else {
@@ -151,6 +154,11 @@ client.on('messageCreate', async (message) => {
                         embedPendu.setImage("https://thumbs.gfycat.com/IdleTotalCoqui-size_restricted.gif");
                         embedPendu.setTimestamp();
                         message.channel.send({ embeds: [embedPendu] });
+
+                        message.channel.messages.fetch({ limit: 100 }).then(messages => {
+                            message.channel.bulkDelete(messages);
+                        });
+
                         collector.stop();
 
                         const result = new Enmap({name: 'resultPendu'});
