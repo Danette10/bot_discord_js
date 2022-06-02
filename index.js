@@ -8,16 +8,16 @@ require("dotenv").config();
 
 
 
-const client = new Client({ intents: [
-        Intents.FLAGS.GUILDS,
-        Intents.FLAGS.GUILD_MEMBERS,
-        Intents.FLAGS.GUILD_PRESENCES,
-        Intents.FLAGS.GUILD_BANS,
-        Intents.FLAGS.GUILD_MESSAGES,
-        Intents.FLAGS.GUILD_MESSAGE_TYPING,
-        Intents.FLAGS.DIRECT_MESSAGES,
-    ],
-
+const client = new Client({ intents:
+        [
+            Intents.FLAGS.GUILDS,
+            Intents.FLAGS.GUILD_MEMBERS,
+            Intents.FLAGS.GUILD_PRESENCES,
+            Intents.FLAGS.GUILD_BANS,
+            Intents.FLAGS.GUILD_MESSAGES,
+            Intents.FLAGS.GUILD_MESSAGE_TYPING,
+            Intents.FLAGS.DIRECT_MESSAGES,
+        ],
 });
 
 client.once('ready', () => {
@@ -393,18 +393,16 @@ client.on('interactionCreate', async interaction => {
     }
 
     else if(commandName === 'winpendu'){
-        // Chercher les victoires du joueur dans la base de données
         interaction.pendu = new Enmap({ name: "resultpendu" });
         let penduMember = interaction.pendu.get(interaction.user.id);
         if(penduMember === undefined){
-            interaction.pendu.set(interaction.user.id, {
-                win: 0,
-            });
-            interaction.reply(`Vous n'avez pas encore de victoire !`, {
+            interaction.reply({
+                content: "Vous n'avez pas encore de victoire ! Vous pouvez en commencer une en tapant la commande `!pendu`",
                 ephemeral: true
             });
         }else {
-            interaction.reply(`Vous avez gagné **${penduMember.win}** parties au pendu !`, {
+            interaction.reply({
+                content: `Vous avez gagné **${penduMember.win}** parties au pendu !`,
                 ephemeral: true
             });
         }
