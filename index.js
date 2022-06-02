@@ -201,6 +201,35 @@ client.on('guildMemberRemove', member => {
         member.guild.channels.cache.get('981893347759226900').send({ embeds: [embedBye] });
 });
 
+// Send message when aniversary is reached
+client.on('ready', message => {
+    let birthday = new Enmap({name: 'birthday'});
+
+    // Récupérer le jour et le mois d'aujourd'hui
+    let today = new Date();
+    let day = today.getDate();
+    let month = today.getMonth() + 1;
+    if(day < 10) {
+        day = '0' + day;
+    }
+    if(month < 10) {
+        month = '0' + month;
+    }
+    let date = `${day}/${month}`;
+
+
+
+    // Récuperer la liste des aniversaires
+    client.birth = new Enmap({name: 'birthday'});
+    client.birth.forEach((value, key) => {
+        let birthday2 = value.birthday.split('/');
+        let birthday3 = birthday2[0] + '/' + birthday2[1];
+        if (birthday3 === date) {
+            client.channels.cache.get('980524497364983869').send(`Bon anniversaire ${key} !`);
+        }
+    });
+
+});
 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
