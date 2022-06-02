@@ -277,7 +277,7 @@ client.on('interactionCreate', async interaction => {
                     .addField('Raison', reason)
                     .setTimestamp()
                     .setFooter({ text: 'Banissement effectué par ' + interaction.user.tag});
-                interaction.channel.send({ embeds: [embedBan] });
+                interaction.reply({ embeds: [embedBan] });
                 await member.ban();
             } else {
                 interaction.reply(`**${user}** n'est pas sur le serveur !`);
@@ -311,7 +311,7 @@ client.on('interactionCreate', async interaction => {
                         .addField('Raison', reason)
                         .setTimestamp()
                         .setFooter({text: 'Débanissement effectué par ' + interaction.user.tag});
-                    interaction.channel.send({embeds: [embedUnban]});
+                    interaction.reply({embeds: [embedUnban]});
                     await interaction.guild.members.unban(userToUnban.user);
                 } else {
                     interaction.reply(`**${user}** n'est pas banni !`);
@@ -343,7 +343,7 @@ client.on('interactionCreate', async interaction => {
                     .addField('Raison', reason)
                     .setTimestamp()
                     .setFooter({text: 'Expulsion effectuée par ' + interaction.user.tag});
-                interaction.channel.send({embeds: [embedKick]});
+                interaction.reply({embeds: [embedKick]});
                 await member.kick();
             }else{
                 interaction.reply(`**${user}** n'est pas sur le serveur !`);
