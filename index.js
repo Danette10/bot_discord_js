@@ -357,14 +357,26 @@ client.on('interactionCreate', async interaction => {
                 interaction.birth.set(interaction.user.tag, {
                     birthday: birthday,
                 });
-                interaction.reply(`Votre anniversaire a été enregistré ! Vous etes né le **${birthday}**`);
+                interaction.reply({
+                    content: `Votre anniversaire a été enregistré ! Vous etes né le **${birthday}**`,
+                    ephemeral: true
+                });
             } else if (birthMember.birthday === birthday) {
-                interaction.reply(`Votre anniversaire est déjà enregistré ! Vous etes né le **${birthMember.birthday}**`);
+                interaction.reply({
+                    content: `Votre anniversaire est déjà enregistré ! Vous etes né le **${birthMember.birthday}**`,
+                    ephemeral: true
+                });
             }else {
-                interaction.reply(`Votre anniversaire est déjà enregistré ! Vous etes né le **${birthMember.birthday}**`);
+                interaction.reply({
+                    content: `Votre anniversaire est déjà enregistré ! Vous etes né le **${birthMember.birthday}**`,
+                    ephemeral: true
+                });
             }
         }else {
-            interaction.reply(`Votre anniversaire n'est pas valide !`);
+            interaction.reply({
+                content: `Votre anniversaire n'est pas valide !`,
+                ephemeral: true
+            });
         }
     }
 
@@ -372,9 +384,15 @@ client.on('interactionCreate', async interaction => {
         interaction.birth = new Enmap({ name: "birthday" });
         let birthMember = interaction.birth.get(interaction.user.tag);
         if(birthMember.birthday === ""){
-            interaction.reply(`Vous n'avez pas encore enregistré votre anniversaire !`);
+            interaction.reply({
+                content: `Vous n'avez pas encore enregistré votre anniversaire !`,
+                ephemeral: true
+            });
         }else{
-            interaction.reply(`Votre anniversaire est le **${birthMember.birthday}**`);
+            interaction.reply({
+                content: `Votre anniversaire est le **${birthMember.birthday}**`,
+                ephemeral: true
+            });
         }
     }
 
