@@ -65,13 +65,14 @@ client.on('messageCreate', async (message) => {
             'chèvre',
             'vache',
         ];
+
         const word = words[Math.floor(Math.random() * words.length)];
 
         const letters = word.split('');
 
         const hiddenWord = '#'.repeat(word.length);
 
-        let tries = 0;
+        let tries = 1;
 
         const guessedLetters = [];
 
@@ -79,8 +80,9 @@ client.on('messageCreate', async (message) => {
 
         const embedPendu = new MessageEmbed()
             .setColor('#0099ff')
-            .setTitle('Pendu')
-            .setDescription(`Le mot à deviner est : ${hiddenWord}`)
+            .setTitle(`Le mot à deviner est : ${hiddenWord}`)
+            embedPendu.setImage('https://cdn.discordapp.com/attachments/777525285558026273/981847308729729054/pendu_1.png');
+            embedPendu.setTimestamp();
         message.channel.send({ embeds: [embedPendu] });
         const filter = (response) => {
             return letters.includes(response.content.toLowerCase());
@@ -94,23 +96,40 @@ client.on('messageCreate', async (message) => {
                 if (userResponse.length !== 1) return;
                 if (guessedLetters.includes(userResponse)) {
                     response.reply('Vous avez déjà essayé cette lettre !');
+
                 }
                 if (!letters.includes(userResponse)) {
                     tries++;
+                    console.log(tries);
                     guessedWords.push(userResponse);
-                    if(tries !== 3){
-                        embedPendu.setDescription(`Le mot à deviner est : ${hiddenWord}`);
-                        embedPendu.setFooter({text: `Tentatives restantes : ${3 - tries}`});
+
+                    if(tries === 2) {
+                        embedPendu.setImage('https://cdn.discordapp.com/attachments/777525285558026273/981847309002362890/pendu_2.png');
+                        embedPendu.setTimestamp();
+                        message.channel.send({ embeds: [embedPendu] });
+                    }else if(tries === 3) {
+                        embedPendu.setImage('https://cdn.discordapp.com/attachments/777525285558026273/981847309719576616/pendu_3.png');
+                        embedPendu.setTimestamp();
+                        message.channel.send({ embeds: [embedPendu] });
+                    }else if(tries === 4) {
+                        embedPendu.setImage('https://cdn.discordapp.com/attachments/777525285558026273/981847309929312256/pendu_4.png');
+                        embedPendu.setTimestamp();
+                        message.channel.send({ embeds: [embedPendu] });
+                    }else if(tries === 5) {
+                        embedPendu.setImage('https://cdn.discordapp.com/attachments/777525285558026273/981847310206140456/pendu_5.png');
+                        embedPendu.setTimestamp();
+                        message.channel.send({ embeds: [embedPendu] });
+                    }else if(tries === 6) {
+                        embedPendu.setImage('https://cdn.discordapp.com/attachments/777525285558026273/981847310457786398/pendu_6.png');
+                        embedPendu.setTimestamp();
                         message.channel.send({ embeds: [embedPendu] });
                     }else{
                         embedPendu.setTitle('Perdu !');
                         embedPendu.setDescription(`Le mot était : ${word}`);
-                        embedPendu.setFooter({text: 'Vous avez perdu !'});
+                        embedPendu.setImage('https://cdn.discordapp.com/attachments/777525285558026273/981847308490666064/pendu_7.png');
+                        embedPendu.setTimestamp();
                         message.channel.send({ embeds: [embedPendu] });
-
-
                         collector.stop();
-
                     }
                 } else {
                     guessedLetters.push(userResponse);
@@ -122,14 +141,15 @@ client.on('messageCreate', async (message) => {
                             hiddenWord2 += '#';
                         }
                     });
+
                     if (hiddenWord2.includes('#')) {
-                        embedPendu.setDescription(`Le mot à deviner est : ${hiddenWord2}`);
-                        embedPendu.setFooter({text: `Tentatives restantes : ${3 - tries}`});
+                        embedPendu.setTitle(`Le mot à deviner est : ${hiddenWord2}`);
+                        embedPendu.setTimestamp();
                         message.channel.send({ embeds: [embedPendu] });
                     }else if (hiddenWord2 === word) {
-                        embedPendu.setTitle('Bravo !');
-                        embedPendu.setDescription(`Le mot était : ${hiddenWord2}`);
-                        embedPendu.setFooter({text: 'Vous avez gagné !'});
+                        embedPendu.setTitle(`Bravo ! Le mot était : ${hiddenWord2}`);
+                        embedPendu.setImage("https://thumbs.gfycat.com/IdleTotalCoqui-size_restricted.gif");
+                        embedPendu.setTimestamp();
                         message.channel.send({ embeds: [embedPendu] });
                         collector.stop();
 
