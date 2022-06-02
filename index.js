@@ -202,7 +202,7 @@ client.on('guildMemberRemove', member => {
 });
 
 // Send message when aniversary is reached
-client.on('ready', message => {
+client.on('ready', () => {
     let birthday = new Enmap({name: 'birthday'});
 
     // Récupérer le jour et le mois d'aujourd'hui
