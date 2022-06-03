@@ -329,7 +329,7 @@ client.on('interactionCreate', async interaction => {
 
     else if(commandName === 'winpendu'){
         interaction.pendu = new Enmap({ name: "resultpendu" });
-        let penduMember = interaction.pendu.get(interaction.user.id);
+        let penduMember = interaction.pendu.get(interaction.user.tag);
         if(penduMember === undefined){
             interaction.reply({
                 content: "Vous n'avez pas encore de victoire ! Vous pouvez en commencer une en tapant la commande `!pendu`",
