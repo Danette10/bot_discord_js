@@ -45,9 +45,10 @@ client.on('messageReactionAdd', async (reaction, user) => {
 client.on('messageCreate', async (message) => {
     if (message.content === '!pendu') {
         await pendu(message);
+
     }
 
-    });
+});
 
 client.on('guildMemberAdd', member => {
 
