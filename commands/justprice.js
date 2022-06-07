@@ -28,16 +28,17 @@ module.exports = interaction => {
 
     let tries = 1;
 
+    let maxTriesDefi = 10;
 
+    let maxTriesHard = 5;
 
     const collector = interaction.channel.createMessageCollector();
 
     collectorButton.on('collect', async i => {
         await i.update({ content: 'Le Juste prix a commencé !', components: [] });
-
         const embedNumber = new MessageEmbed()
             .setColor('#0099ff')
-            .setTitle('JustPrice')
+            .setTitle(`Juste Prix`)
             .setDescription('Saississez un nombre entre 1 et 100 !')
             .setTimestamp();
         interaction.channel.send({ embeds: [embedNumber] });
@@ -48,6 +49,8 @@ module.exports = interaction => {
             if(userResponse) {
                 if (userResponse !== '!stop') {
                     if (i.customId === 'Libre') {
+
+
                         if (userResponse < number) {
                             tries++;
                             embedNumber.setDescription(`Trop petit ! Essayez encore !`);
@@ -84,17 +87,93 @@ module.exports = interaction => {
 
                     else if (i.customId === 'Défi') {
 
+                        if (maxTriesDefi !== 1) {
+                            if (userResponse < number) {
+                                maxTriesDefi--;
+                                embedNumber.setDescription(`Trop petit ! Essayez encore !`);
+                                embedNumber.setFooter({text: `Juste Prix --- Défi --- ${maxTriesDefi} essai(s) restant(s)`});
+                                embedNumber.setTimestamp();
+                                interaction.channel.send({ embeds: [embedNumber] });
+                            }
+                            else if (userResponse > number) {
+                                maxTriesDefi--;
+                                embedNumber.setFooter({text: `Juste Prix --- Défi --- ${maxTriesDefi} essai(s) restant(s)`});
+                                embedNumber.setDescription(`Trop grand ! Essayez encore !`);
+                                embedNumber.setTimestamp();
+                                interaction.channel.send({ embeds: [embedNumber] });
+                            } else {
+                                embedNumber.setTitle(`Bravo ! Vous avez trouvé le nombre !`);
+                                embedNumber.setDescription(`Vous avez réussi !`);
+                                embedNumber.setFooter({text: `Juste Prix --- Défi`});
+                                embedNumber.setTimestamp();
+                                interaction.channel.send({ embeds: [embedNumber] });
+                                interaction.channel.messages.fetch({ limit: 100 }).then(messages => {
+                                    interaction.channel.bulkDelete(messages);
+                                });
+                                collector.stop();
+                            }
+
+                        }else {
+                            embedNumber.setTitle(`Vous avez perdu ! Le nombre était ${number}`);
+                            embedNumber.setDescription(`Vous avez perdu !`);
+                            embedNumber.setTimestamp();
+                            interaction.channel.send({ embeds: [embedNumber] });
+                            interaction.channel.messages.fetch({ limit: 100 }).then(messages => {
+                                interaction.channel.bulkDelete(messages);
+                            });
+                            collector.stop();
+                        }
+
+
+
                     }
 
                     else if (i.customId === 'Hard') {
 
+                        if (maxTriesHard !== 1) {
+                            if (userResponse < number) {
+                                maxTriesHard--;
+                                embedNumber.setFooter({text: `Juste Prix --- Hard --- ${maxTriesHard} essai(s) restant(s)`});
+                                embedNumber.setDescription(`Trop petit ! Essayez encore !`);
+                                embedNumber.setTimestamp();
+                                interaction.channel.send({ embeds: [embedNumber] });
+                            }
+                            else if (userResponse > number) {
+                                maxTriesHard--;
+                                embedNumber.setFooter({text: `Juste Prix --- Hard --- ${maxTriesHard} essai(s) restant(s)`});
+                                embedNumber.setDescription(`Trop grand ! Essayez encore !`);
+                                embedNumber.setTimestamp();
+                                interaction.channel.send({ embeds: [embedNumber] });
+                            } else {
+                                embedNumber.setTitle(`Bravo ! Vous avez trouvé le nombre !`);
+                                embedNumber.setDescription(`Vous avez réussi !`);
+                                embedNumber.setFooter({text: `Juste Prix --- Hard`});
+                                embedNumber.setTimestamp();
+                                interaction.channel.send({ embeds: [embedNumber] });
+                                interaction.channel.messages.fetch({ limit: 100 }).then(messages => {
+                                    interaction.channel.bulkDelete(messages);
+                                });
+                                collector.stop();
+                            }
+
+                        }else {
+                            embedNumber.setTitle(`Vous avez perdu ! Le nombre était ${number}`);
+                            embedNumber.setDescription(`Vous avez perdu !`);
+                            embedNumber.setFooter({text: `Juste Prix --- Hard`});
+                            embedNumber.setTimestamp();
+                            interaction.channel.send({ embeds: [embedNumber] });
+                            interaction.channel.messages.fetch({ limit: 100 }).then(messages => {
+                                interaction.channel.bulkDelete(messages);
+                            });
+                            collector.stop();
+                        }
                     }
 
                 } else {
-
-                    embedNumber.setTitle('JustPrice');
-                    embedNumber.setDescription(`Vous avez quitté la partie !`);
-                    embedNumber.setTimestamp();
+                    const embedNumber = new MessageEmbed()
+                        .setTitle('JustPrice')
+                        .setDescription(`Vous avez quitté la partie !`)
+                        .setTimestamp();
                     interaction.channel.send({ embeds: [embedNumber] });
                     interaction.channel.messages.fetch({ limit: 100 }).then(messages => {
                         interaction.channel.bulkDelete(messages);
