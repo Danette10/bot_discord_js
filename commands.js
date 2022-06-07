@@ -104,6 +104,10 @@ const commands = [
         .setName('justprice')
         .setDescription('Joue au jeu du juste prix !'),
 
+    new SlashCommandBuilder()
+        .setName('testbutton')
+        .setDescription('Test !'),
+
 
 ]
 

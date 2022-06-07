@@ -1,6 +1,7 @@
 const { Client, Intents } = require('discord.js');
 const { MessageEmbed } = require('discord.js');
 
+
 // Commandes importées
 
 const roleClaim = require('./utils/role-claim');
@@ -19,6 +20,7 @@ const help = require('./commands/help');
 const countMessages = require('./commands/count-messages');
 const winpendu = require('./commands/winpendu');
 const bestjustprice = require('./commands/bestjustprice');
+const testbutton = require('./commands/testbutton');
 
 // Fin des commandes importées
 
@@ -196,6 +198,11 @@ client.on('interactionCreate', async interaction => {
     else if(commandName === 'justprice'){
 
         await justprice(interaction);
+    }
+
+    else if(commandName === 'testbutton'){
+
+        await testbutton(interaction);
     }
 
     else if(commandName === 'help'){
