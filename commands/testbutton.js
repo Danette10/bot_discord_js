@@ -10,9 +10,7 @@ module.exports = interaction => {
         );
     interaction.reply({ content: 'Pong!', components: [row] })
 
-    const filter = i => i.customId === 'primary';
-
-    const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+    const collector = interaction.channel.createMessageComponentCollector({ time: 15000 });
 
     collector.on('collect', async i => {
         if (i.customId === 'primary') {
