@@ -2,6 +2,7 @@ const { Client, Intents } = require('discord.js');
 const { MessageEmbed } = require('discord.js');
 const roleClaim = require('./utils/role-claim');
 const pendu = require('./commands/pendu');
+const justprice = require('./commands/justprice');
 
 const Enmap = require("enmap");
 
@@ -45,7 +46,10 @@ client.on('messageReactionAdd', async (reaction, user) => {
 client.on('messageCreate', async (message) => {
     if (message.content === '!pendu') {
         await pendu(message);
+    }
 
+    else if (message.content === '!justprice') {
+        await justprice(message);
     }
 
 });
@@ -345,7 +349,21 @@ client.on('interactionCreate', async interaction => {
 
     }
 
-
+    else if(commandName === 'bestjustprice'){
+        interaction.justprice = new Enmap({ name: "justprice" });
+        let justpriceMember = interaction.justprice.get(interaction.user.tag);
+        if(justpriceMember === undefined){
+            interaction.reply({
+                content: "Vous n'avez pas encore jouer au juste prix ! Vous pouvez en commencer une en tapant la commande `!justprice`",
+                ephemeral: true
+            });
+        }else {
+            interaction.reply({
+                content: `Votre meilleur score au juste prix est de  **${justpriceMember.tried}** essai(s) !`,
+                ephemeral: true
+            });
+        }
+    }
 
 
     else if(commandName === 'help'){
@@ -365,8 +383,10 @@ client.on('interactionCreate', async interaction => {
                     "\n> /countmessage : Affiche le nombre de message dans le salon" +
                     "\n> /clear : Supprime un nombre de messages" +
                 "\n\n**__JEUX__**" +
-                    "\n\n> /pendu : Joue au pendu" +
+                    "\n\n> !pendu : Joue au pendu" +
+                    "\n> !justprice : Joue au juste prix" +
                     "\n> /winpendu : Affiche le nombre de parties gagnées au pendu" +
+                    "\n> /bestjustprice : Affiche le meilleur score au juste prix" +
                 "\n\n**__AUTRES__**" +
                     "\n\n> /birthday : Enregistre votre anniversaire" +
                     "\n> /mybirthday : Affiche votre anniversaire" +

@@ -3,7 +3,7 @@ const Enmap = require("enmap");
 module.exports = message => {
     const words = [
         'pomme',
-       /* 'banane',
+        'banane',
         'orange',
         'cerise',
         'fraise',
@@ -59,7 +59,7 @@ module.exports = message => {
         'Taie',
         'Taux',
         'Thym',
-        'Topa',*/
+        'Topa',
     ];
 
     const word = words[Math.floor(Math.random() * words.length)].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
