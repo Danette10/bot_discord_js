@@ -1,6 +1,6 @@
 const {MessageEmbed} = require("discord.js");
 const Enmap = require("enmap");
-module.exports = message => {
+module.exports = interaction => {
 
     const number = Math.floor(Math.random() * 100) + 1;
 
@@ -11,9 +11,9 @@ module.exports = message => {
         .setTitle('JustPrice')
         .setDescription('Saississez un nombre entre 1 et 100 !')
         .setTimestamp();
-    message.channel.send({ embeds: [embedNumber] });
+    interaction.reply({ embeds: [embedNumber] });
 
-    const collector = message.channel.createMessageCollector();
+    const collector = interaction.channel.createMessageCollector();
 
     collector.on('collect', (response) => {
         const userResponse = response.content;
@@ -23,28 +23,28 @@ module.exports = message => {
                     tries++;
                     embedNumber.setDescription(`Trop petit ! Essayez encore !`);
                     embedNumber.setTimestamp();
-                    message.channel.send({ embeds: [embedNumber] });
+                    interaction.channel.send({ embeds: [embedNumber] });
                 } else if (userResponse > number) {
                     tries++;
                     embedNumber.setDescription(`Trop grand ! Essayez encore !`);
                     embedNumber.setTimestamp();
-                    message.channel.send({ embeds: [embedNumber] });
+                    interaction.channel.send({ embeds: [embedNumber] });
                 } else {
                     const result = new Enmap({name: 'justprice'});
 
                     embedNumber.setDescription(`Bravo ! Vous avez trouvé le nombre en ${tries} essai(s) !`);
                     embedNumber.setTimestamp();
-                    message.channel.send({ embeds: [embedNumber] });
-                    message.channel.messages.fetch({ limit: 100 }).then(messages => {
-                        message.channel.bulkDelete(messages);
+                    interaction.channel.send({ embeds: [embedNumber] });
+                    interaction.channel.messages.fetch({ limit: 100 }).then(messages => {
+                        interaction.channel.bulkDelete(messages);
                     });
 
-                    if (result.has(message.author.tag)) {
-                        result.set(message.author.tag, {
-                            tried: result.get(message.author.tag).tried < tries ? result.get(message.author.tag).tried : tries,
+                    if (result.has(interaction.user.tag)) {
+                        result.set(interaction.user.tag, {
+                            tried: result.get(interaction.user.tag).tried < tries ? result.get(interaction.user.tag).tried : tries,
                         });
                     }else {
-                        result.set(message.author.tag, {
+                        result.set(interaction.user.tag, {
                             tried: tries,
                         });
                     }
@@ -56,9 +56,9 @@ module.exports = message => {
                 embedNumber.setTitle('JustPrice');
                 embedNumber.setDescription(`Vous avez quitté la partie !`);
                 embedNumber.setTimestamp();
-                message.channel.send({ embeds: [embedNumber] });
-                message.channel.messages.fetch({ limit: 100 }).then(messages => {
-                    message.channel.bulkDelete(messages);
+                interaction.channel.send({ embeds: [embedNumber] });
+                interaction.channel.messages.fetch({ limit: 100 }).then(messages => {
+                    interaction.channel.bulkDelete(messages);
                 });
                 collector.stop();
             }

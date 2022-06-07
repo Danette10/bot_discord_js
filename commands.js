@@ -96,7 +96,13 @@ const commands = [
         .setName('bestjustprice')
         .setDescription('Affiche votre meilleur score au jeu du juste prix !'),
 
+    new SlashCommandBuilder()
+        .setName('pendu')
+        .setDescription('Joue au jeu du pendu !'),
 
+    new SlashCommandBuilder()
+        .setName('justprice')
+        .setDescription('Joue au jeu du juste prix !'),
 
 
 ]
