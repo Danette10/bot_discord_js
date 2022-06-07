@@ -82,7 +82,6 @@ client.on('guildMemberRemove', member => {
         member.guild.channels.cache.get('981893347759226900').send({ embeds: [embedBye] });
 });
 
-// Send message when aniversary is reached
 client.on('ready', () => {
     let birthday = new Enmap({name: 'birthday'});
 
@@ -365,6 +364,7 @@ client.on('interactionCreate', async interaction => {
         }
     }
 
+    
 
     else if(commandName === 'help'){
         // Affiche la liste des commandes
