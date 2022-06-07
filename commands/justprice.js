@@ -52,8 +52,10 @@ module.exports = message => {
                 }
             } else {
 
+                embedNumber.setTitle('JustPrice');
                 embedNumber.setDescription(`Vous avez quitté la partie !`);
                 embedNumber.setTimestamp();
+                message.channel.send({ embeds: [embedNumber] });
                 message.channel.messages.fetch({ limit: 100 }).then(messages => {
                     message.channel.bulkDelete(messages);
                 });
