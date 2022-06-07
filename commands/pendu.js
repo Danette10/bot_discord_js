@@ -3,7 +3,7 @@ const Enmap = require("enmap");
 module.exports = message => {
     const words = [
         'pomme',
-        'banane',
+       /* 'banane',
         'orange',
         'cerise',
         'fraise',
@@ -59,7 +59,7 @@ module.exports = message => {
         'Taie',
         'Taux',
         'Thym',
-        'Topa',
+        'Topa',*/
     ];
 
     const word = words[Math.floor(Math.random() * words.length)].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -96,6 +96,10 @@ module.exports = message => {
                 embedPendu.setTimestamp();
                 message.channel.send({ embeds: [embedPendu] });
                 collector.stop();
+
+                message.channel.messages.fetch({ limit: 100 }).then(messages => {
+                    message.channel.bulkDelete(messages);
+                });
 
                 const result = new Enmap({name: 'resultPendu'});
 
