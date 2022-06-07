@@ -79,7 +79,7 @@ module.exports = message => {
     const embedPendu = new MessageEmbed()
         .setColor('#0099ff')
         .setTitle(`Le mot à deviner est : ${hiddenWord}`)
-    embedPendu.setImage('https://cdn.discordapp.com/attachments/777525285558026273/981847308729729054/pendu_1.png');
+    embedPendu.setImage('https://i.postimg.cc/Jz4GJjdj/pendu-1.png')
     embedPendu.setTimestamp();
     message.channel.send({ embeds: [embedPendu] });
     const filter = (response) => {
@@ -103,8 +103,6 @@ module.exports = message => {
                     win: result.get(message.author.tag) ? result.get(message.author.tag).win + 1 : 1,
                     lose: result.get(message.author.tag) ? result.get(message.author.tag).lose : 0,
                 });
-
-        const userResponse = response.content.toLowerCase();
             }else {
                 if (guessedWords.includes(userResponse)) {
                     response.reply('Vous avez déjà essayé ce mot !');
@@ -123,27 +121,27 @@ module.exports = message => {
 
                     embedPendu.setDescription(`Lettres déjà essayées : **${guessedLettersUpper}**`);
                     if(tries === 2) {
-                        embedPendu.setImage('https://cdn.discordapp.com/attachments/777525285558026273/981847309002362890/pendu_2.png');
+                        embedPendu.setImage('https://i.postimg.cc/T37hchZF/pendu-2.png');
                         embedPendu.setTimestamp();
                         message.channel.send({ embeds: [embedPendu] });
                     }else if(tries === 3) {
-                        embedPendu.setImage('https://cdn.discordapp.com/attachments/777525285558026273/981847309719576616/pendu_3.png');
+                        embedPendu.setImage('https://i.postimg.cc/BvR6dkZC/pendu-3.png');
                         embedPendu.setTimestamp();
                         message.channel.send({ embeds: [embedPendu] });
                     }else if(tries === 4) {
-                        embedPendu.setImage('https://cdn.discordapp.com/attachments/777525285558026273/981847309929312256/pendu_4.png');
+                        embedPendu.setImage('https://i.postimg.cc/5tXyKbJ0/pendu-4.png');
                         embedPendu.setTimestamp();
                         message.channel.send({ embeds: [embedPendu] });
                     }else if(tries === 5) {
-                        embedPendu.setImage('https://cdn.discordapp.com/attachments/777525285558026273/981847310206140456/pendu_5.png');
+                        embedPendu.setImage('https://i.postimg.cc/7676D9fr/pendu-5.png');
                         embedPendu.setTimestamp();
                         message.channel.send({ embeds: [embedPendu] });
                     }else if(tries === 6) {
-                        embedPendu.setImage('https://cdn.discordapp.com/attachments/777525285558026273/981847310457786398/pendu_6.png');
+                        embedPendu.setImage('https://i.postimg.cc/4yg33c97/pendu-6.png');
                         embedPendu.setTimestamp();
                         message.channel.send({ embeds: [embedPendu] });
                     }else if(tries === 7) {
-                        embedPendu.setImage('https://cdn.discordapp.com/attachments/777525285558026273/981847308490666064/pendu_7.png');
+                        embedPendu.setImage('https://i.postimg.cc/hv1tQGLC/pendu-7.png');
                         embedPendu.setTimestamp();
                         message.channel.send({embeds: [embedPendu]});
                     }else {
