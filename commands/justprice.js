@@ -30,6 +30,7 @@ module.exports = message => {
                     embedNumber.setTimestamp();
                     message.channel.send({ embeds: [embedNumber] });
                 } else {
+                    const result = new Enmap({name: 'justprice'});
 
                     embedNumber.setDescription(`Bravo ! Vous avez trouvé le nombre en ${tries} essai(s) !`);
                     embedNumber.setTimestamp();
@@ -37,7 +38,7 @@ module.exports = message => {
                     message.channel.messages.fetch({ limit: 100 }).then(messages => {
                         message.channel.bulkDelete(messages);
                     });
-                    const result = new Enmap({name: 'justprice'});
+
                     if (result.has(message.author.tag)) {
                         result.set(message.author.tag, {
                             tried: result.get(message.author.tag).tried < tries ? result.get(message.author.tag).tried : tries,
