@@ -105,6 +105,10 @@ const commands = [
         .setDescription('Joue au jeu du juste prix !'),
 
     new SlashCommandBuilder()
+        .setName('stop')
+        .setDescription('Arrête le bot !'),
+
+    new SlashCommandBuilder()
         .setName('testbutton')
         .setDescription('Test !'),
 
