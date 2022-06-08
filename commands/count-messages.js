@@ -8,8 +8,16 @@ module.exports = interaction => {
         interaction.reply(
             {
                 content: `Il y a **${count}** message(s) dans ce salon.`,
-                ephemeral: true
+                ephemeral: false
             });
+
+        setTimeout(() => {
+            interaction.channel.messages.fetch({ limit: 1 }).then(messages => {
+                messages.forEach(message => {
+                    message.delete();
+                });
+            });
+        }, 1000);
 
     });
 }
