@@ -7,7 +7,7 @@ module.exports = interaction => {
         });
         interaction.reply(
             {
-                content: `Il y a ${count} messages dans ce salon.`,
+                content: `Il y a **${count}** message(s) dans ce salon.`,
                 ephemeral: true
             });
 
