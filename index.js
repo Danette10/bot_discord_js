@@ -215,7 +215,7 @@ client.on('interactionCreate', async interaction => {
         await meteo(interaction);
     }
 
-    
+
 
     else if(commandName === 'help'){
 

@@ -22,6 +22,7 @@ module.exports = interaction => {
                 .addField('Température', `${temp}°C`)
                 .addField('Humidité', `${data.main.humidity}%`)
                 .addField('Vent', `${data.wind.speed} km/h`)
+                .addField('Nuage', `${data.clouds.all}%`)
                 .setFooter({ text: `Météo de ${city} récupérée par OpenWeatherMap` })
                 .setTimestamp();
             interaction.reply({ embeds: [embedMeteo] });
