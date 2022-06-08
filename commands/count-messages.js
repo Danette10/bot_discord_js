@@ -5,9 +5,11 @@ module.exports = interaction => {
         messages.forEach(() => {
             count++;
         });
-        interaction.reply(`Il y a **${count}** messages dans ce salon !`);
-
-        setTimeout(() => interaction.deleteReply(), 5000);
+        interaction.reply(
+            {
+                content: `Il y a ${count} messages dans ce salon.`,
+                ephemeral: true
+            });
 
     });
 }
