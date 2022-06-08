@@ -5,7 +5,6 @@ module.exports = interaction => {
     let reason = interaction.options.getString('reason');
     let duration = interaction.options.getInteger('duration');
 
-    // Commande timeout
     if (interaction.member.permissions.has('MANAGE_MESSAGES')) {
         let member = interaction.guild.members.cache.find(member => member.user.id === user.id);
         if (member) {

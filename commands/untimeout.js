@@ -4,7 +4,6 @@ module.exports = interaction => {
     let user = interaction.options.getMentionable('user');
     let reason = interaction.options.getString('reason');
 
-    // Commande untimeout
     if (interaction.member.permissions.has('MANAGE_MESSAGES')) {
         let member = interaction.guild.members.cache.find(member => member.user.id === user.id);
         if (member) {
