@@ -11,7 +11,7 @@ module.exports = async interaction => {
                 .setTitle('Bannissement')
                 .setColor('#ff0000')
                 .setImage(member.user.displayAvatarURL())
-                .addField('Utilisateur banni', member.user.tag)
+                .addField('Utilisateur banni', '<@' + member.user.id + '>')
                 .addField('Raison', reason)
                 .setTimestamp()
                 .setFooter({ text: 'Banissement effectué par ' + interaction.user.tag});

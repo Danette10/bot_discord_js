@@ -1,6 +1,7 @@
 const {MessageEmbed} = require("discord.js");
 const fetch = require('node-fetch');
 module.exports = interaction => {
+
     let city = interaction.options.getString('city');
 
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.OPENWEATHERMAP_API_KEY}`;

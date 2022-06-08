@@ -28,10 +28,10 @@ const commands = [
     new SlashCommandBuilder()
         .setName('ban')
         .setDescription('Bannit un utilisateur !')
-        .addStringOption(option =>
-        option.setName('user')
-            .setDescription('Nom d\'utilisateur de l\'utilisateur que vous voulez bannir !')
-            .setRequired(true)
+        .addMentionableOption(option =>
+            option.setName('user')
+                .setDescription('Nom d\'utilisateur de l\'utilisateur que vous voulez bannir !')
+                .setRequired(true)
         )
         .addStringOption(option =>
             option.setName('reason')
@@ -60,7 +60,7 @@ const commands = [
     new SlashCommandBuilder()
         .setName('kick')
         .setDescription('Kick un utilisateur !')
-        .addStringOption(option =>
+        .addMentionableOption(option =>
             option.setName('user')
                 .setDescription('Nom d\'utilisateur de l\'utilisateur que vous voulez kick !')
                 .setRequired(true)
@@ -118,6 +118,25 @@ const commands = [
         .addStringOption(option =>
             option.setName('city')
                 .setDescription('Ville de la météo !')
+                .setRequired(true)
+        ),
+
+    new SlashCommandBuilder()
+        .setName('timeout')
+        .setDescription('Timeout un utilisateur !')
+        .addMentionableOption(option =>
+            option.setName('user')
+                .setDescription('Nom d\'utilisateur de l\'utilisateur que vous voulez timeout !')
+                .setRequired(true)
+        )
+        .addStringOption(option =>
+            option.setName('reason')
+                .setDescription('Raison du timeout !')
+                .setRequired(true)
+        )
+        .addIntegerOption(option =>
+            option.setName('duration')
+                .setDescription('Durée du timeout !')
                 .setRequired(true)
         ),
 

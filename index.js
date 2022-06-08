@@ -22,6 +22,9 @@ const bestjustprice = require('./commands/bestjustprice');
 const testbutton = require('./commands/testbutton');
 const stop = require('./commands/stop');
 const meteo = require('./commands/meteo');
+const timeout = require('./commands/timeout');
+
+
 
 // Fin des commandes importées
 
@@ -114,7 +117,7 @@ client.on('ready', () => {
         let birthday2 = value.birthday.split('/');
         let birthday3 = birthday2[0] + '/' + birthday2[1];
         if (birthday3 === date) {
-            client.channels.cache.get('980524497364983869').send(`Bon anniversaire ${key} !`);
+            client.channels.cache.get('980524497364983869').send('On souhaite tous un joyeux anniversaire à ' + '<@' + key +  '> !');
         }
     });
 
@@ -213,6 +216,11 @@ client.on('interactionCreate', async interaction => {
     else if(commandName === 'meteo'){
 
         await meteo(interaction);
+    }
+
+    else if(commandName === 'timeout'){
+
+        await timeout(interaction);
     }
 
 

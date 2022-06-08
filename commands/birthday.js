@@ -2,13 +2,13 @@ const Enmap = require("enmap");
 module.exports = interaction => {
     const birthday = interaction.options.getString('birthday').replace(/\s/g, '');
     interaction.birth = new Enmap({ name: "birthday" });
-    interaction.birth.ensure(interaction.user.tag, {
+    interaction.birth.ensure(interaction.user.id, {
         birthday: "",
     });
-    let birthMember = interaction.birth.get(interaction.user.tag);
+    let birthMember = interaction.birth.get(interaction.user.id);
     if(birthday.length === 10 && birthday.match(/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/)) {
         if (birthMember.birthday === "") {
-            interaction.birth.set(interaction.user.tag, {
+            interaction.birth.set(interaction.user.id, {
                 birthday: birthday,
             });
             interaction.reply({

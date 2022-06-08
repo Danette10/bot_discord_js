@@ -1,7 +1,8 @@
 const Enmap = require("enmap");
 module.exports = interaction => {
     interaction.birth = new Enmap({ name: "birthday" });
-    let birthMember = interaction.birth.get(interaction.user.tag);
+    let birthMember = interaction.birth.get(interaction.user.id);
+    if (birthMember) {
     if(birthMember.birthday === ""){
         interaction.reply({
             content: `Vous n'avez pas encore enregistré votre anniversaire !`,
@@ -9,7 +10,13 @@ module.exports = interaction => {
         });
     }else{
         interaction.reply({
-            content: `Votre anniversaire est le **${birthMember.birthday}**`,
+            content: `Votre anniversaire est le **${birthMember.birthday}** !`,
+            ephemeral: true
+            });
+        }
+    }else{
+        interaction.reply({
+            content: `Vous n'avez pas encore enregistré votre anniversaire !`,
             ephemeral: true
         });
     }
