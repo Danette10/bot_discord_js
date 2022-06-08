@@ -29,8 +29,6 @@ const Enmap = require("enmap");
 
 require("dotenv").config();
 
-
-
 const client = new Client({ intents:
         [
             Intents.FLAGS.GUILDS,
