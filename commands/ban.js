@@ -11,8 +11,8 @@ module.exports = async interaction => {
                 .setTitle('Bannissement')
                 .setColor('#ff0000')
                 .setImage(member.user.displayAvatarURL())
-                .addField('Utilisateur banni', '<@' + member.user.id + '>')
-                .addField('Raison', reason)
+                .setDescription('**<@' + member + '> a été banni**\n\n' +
+                    '> Raison : ' + reason)
                 .setTimestamp()
                 .setFooter({ text: 'Banissement effectué par ' + interaction.user.tag});
             interaction.reply({ embeds: [embedBan] });

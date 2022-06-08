@@ -23,6 +23,7 @@ const testbutton = require('./commands/testbutton');
 const stop = require('./commands/stop');
 const meteo = require('./commands/meteo');
 const timeout = require('./commands/timeout');
+const untimeout = require('./commands/untimeout');
 
 
 
@@ -223,6 +224,10 @@ client.on('interactionCreate', async interaction => {
         await timeout(interaction);
     }
 
+    else if(commandName === 'untimeout'){
+
+        await untimeout(interaction);
+    }
 
 
     else if(commandName === 'help'){

@@ -140,6 +140,20 @@ const commands = [
                 .setRequired(true)
         ),
 
+    new SlashCommandBuilder()
+        .setName('untimeout')
+        .setDescription('Untimeout un utilisateur !')
+        .addMentionableOption(option =>
+            option.setName('user')
+                .setDescription('Nom d\'utilisateur de l\'utilisateur que vous voulez untimeout !')
+                .setRequired(true)
+        )
+        .addStringOption(option =>
+            option.setName('reason')
+                .setDescription('Raison du untimeout !')
+                .setRequired(true)
+        ),
+
 ]
 
     .map(command => command.toJSON());

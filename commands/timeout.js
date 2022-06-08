@@ -13,8 +13,9 @@ module.exports = interaction => {
                 .setTitle('Timeout')
                 .setColor('#ff0000')
                 .setImage(member.user.displayAvatarURL())
-                .addField('Utilisateur timeout', '<@' + member.user.id + '>')
-                .addField('Raison', reason)
+                .setDescription('**<@' + member + '> a été timeout**\n\n' +
+                '> Raison : ' + reason + '\n' +
+                '> Durée : ' + duration + ' secondes')
                 .setTimestamp()
                 .setFooter({ text: 'Timeout effectué par ' + interaction.user.tag});
             interaction.reply({ embeds: [embedTimeout] });

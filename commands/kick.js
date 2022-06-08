@@ -13,8 +13,8 @@ module.exports = async interaction => {
                 .setTitle('Expulsion')
                 .setColor('#ff0000')
                 .setImage(member.user.displayAvatarURL())
-                .addField('Utilisateur exclu', '<@' + member.user.id + '>')
-                .addField('Raison', reason)
+                .setDescription('**<@' + member + '> a été exclu**\n\n' +
+                    '> Raison : ' + reason)
                 .setTimestamp()
                 .setFooter({text: 'Expulsion effectuée par ' + interaction.user.tag});
             interaction.reply({embeds: [embedKick]});
