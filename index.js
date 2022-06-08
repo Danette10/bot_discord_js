@@ -1,7 +1,6 @@
 const { Client, Intents } = require('discord.js');
 const { MessageEmbed } = require('discord.js');
 
-
 // Commandes importées
 
 const roleClaim = require('./utils/role-claim');
@@ -22,6 +21,7 @@ const winpendu = require('./commands/winpendu');
 const bestjustprice = require('./commands/bestjustprice');
 const testbutton = require('./commands/testbutton');
 const stop = require('./commands/stop');
+const meteo = require('./commands/meteo');
 
 // Fin des commandes importées
 
@@ -91,6 +91,7 @@ client.on('guildMemberRemove', member => {
 });
 
 client.on('ready', () => {
+
     let birthday = new Enmap({name: 'birthday'});
 
     // Récupérer le jour et le mois d'aujourd'hui
@@ -207,6 +208,11 @@ client.on('interactionCreate', async interaction => {
     else if(commandName === 'stop'){
 
         await stop(interaction);
+    }
+
+    else if(commandName === 'meteo'){
+
+        await meteo(interaction);
     }
 
     else if(commandName === 'help'){

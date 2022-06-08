@@ -112,6 +112,14 @@ const commands = [
         .setName('testbutton')
         .setDescription('Test !'),
 
+    new SlashCommandBuilder()
+        .setName('meteo')
+        .setDescription('Affiche la météo !')
+        .addStringOption(option =>
+            option.setName('city')
+                .setDescription('Ville de la météo !')
+                .setRequired(true)
+        ),
 
 ]
 
