@@ -7,7 +7,6 @@ const roleClaim = require('./utils/role-claim');
 const pendu = require('./commands/pendu');
 const justprice = require('./commands/justprice');
 const server = require('./commands/server');
-const user = require('./commands/user');
 const clear = require('./commands/clear');
 const list = require('./commands/list');
 const ban = require('./commands/ban');
@@ -132,12 +131,6 @@ client.on('interactionCreate', async interaction => {
     if (commandName === 'server') {
 
         await server(interaction);
-
-    }
-
-    else if (commandName === 'user') {
-
-        await user(interaction);
 
     }
 

@@ -7,7 +7,6 @@ module.exports = interaction => {
         .setDescription("/help : Affiche la liste des commandes" +"\n\n"+
             "**__INFO__**" +
             "\n\n> /server : Affiche le nom du serveur et le nombre de membres" +
-            "\n> /user : Affiche votre tag et votre id" +
             "\n\n**__MODERATION__**" +
             "\n\n> /ban : Ban un utilisateur" +
             "\n> /unban : Unban un utilisateur" +
