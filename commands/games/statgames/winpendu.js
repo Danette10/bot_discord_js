@@ -4,7 +4,7 @@ module.exports = interaction => {
     let penduMember = interaction.pendu.get(`${interaction.guild.name}-${interaction.user.tag}`);
     if(penduMember === undefined){
         interaction.reply({
-            content: "Vous n'avez pas encore de victoire ! Vous pouvez en commencer une en tapant la commande `/pendu`",
+            content: "Vous n'avez pas encore commencer une partie ! Vous pouvez en commencer une en tapant la commande `/pendu`",
             ephemeral: true
         });
     }else {
