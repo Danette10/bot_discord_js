@@ -23,7 +23,6 @@ module.exports = interaction => {
             "\n> /bestjustprice : Affiche le meilleur score au juste prix" +
             "\n\n**__AUTRES__**" +
             "\n\n> /birthday : Enregistre votre anniversaire" +
-            "\n> /stop : Stop le bot" +
             "\n> /mybirthday : Affiche votre anniversaire" +
             ")")
         .setTimestamp()
