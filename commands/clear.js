@@ -17,6 +17,9 @@ module.exports = interaction => {
         setTimeout(() => interaction.deleteReply(), 5000);
 
     }else{
-        interaction.reply({content: '**' + interaction.user.username + '**' + ', vous n\'avez pas la permission de supprimer des messages !', ephemeral: false});
+        interaction.reply({
+            content: '**' + interaction.user.username + '**' + ', vous n\'avez pas la permission de supprimer des messages !',
+            ephemeral: true
+        });
     }
 }

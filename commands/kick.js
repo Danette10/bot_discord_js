@@ -26,7 +26,7 @@ module.exports = async interaction => {
     }else{
         interaction.reply({
             content: '**' + interaction.user.username + '**' + ', vous n\'avez pas la permission de kick des utilisateurs !',
-            ephemeral: false
+            ephemeral: true
         });
     }
 }

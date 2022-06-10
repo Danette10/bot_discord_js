@@ -24,7 +24,7 @@ module.exports = async interaction => {
     } else {
         interaction.reply({
             content: '**' + interaction.user.username + '**' + ', vous n\'avez pas la permission de bannir des utilisateurs !',
-            ephemeral: false
+            ephemeral: true
         });
     }
 }

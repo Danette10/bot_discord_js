@@ -19,7 +19,6 @@ const countMessages = require('./commands/count-messages');
 const winpendu = require('./commands/winpendu');
 const bestjustprice = require('./commands/bestjustprice');
 const testbutton = require('./commands/testbutton');
-const stop = require('./commands/stop');
 const meteo = require('./commands/meteo');
 const timeout = require('./commands/timeout');
 const untimeout = require('./commands/untimeout');
@@ -200,11 +199,6 @@ client.on('interactionCreate', async interaction => {
     else if(commandName === 'testbutton'){
 
         await testbutton(interaction);
-    }
-
-    else if(commandName === 'stop'){
-
-        await stop(interaction);
     }
 
     else if(commandName === 'meteo'){
