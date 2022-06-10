@@ -2,7 +2,6 @@ const {MessageEmbed} = require("discord.js");
 const Enmap = require("enmap");
 module.exports = interaction => {
 
-
     const number = Math.floor(Math.random() * 100) + 1;
 
     let tries = 1;
@@ -21,8 +20,13 @@ module.exports = interaction => {
             const userResponse = response.content;
             if(userResponse) {
                 if (userResponse !== '!stop') {
+                    if(!Number.isInteger(Number(userResponse))) {
+                        embedNumber.setDescription('Veuillez saisir un nombre !');
+                        embedNumber.setTimestamp();
+                        interaction.channel.send({ embeds: [embedNumber] });
 
-                        if (userResponse < number) {
+                    }else {
+                        if(userResponse < number) {
                             tries++;
                             embedNumber.setDescription(`Trop petit ! Essayez encore !`);
                             embedNumber.setTimestamp();
@@ -51,6 +55,7 @@ module.exports = interaction => {
 
                             collector.stop();
                         }
+                    }
                     }else {
                     const embedNumber = new MessageEmbed()
                         .setTitle('JustPrice')
