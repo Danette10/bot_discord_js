@@ -100,9 +100,9 @@ module.exports = interaction => {
                 interaction.channel.send({ embeds: [embedPendu] });
                 collector.stop();
 
-                result.set(interaction.user.tag, {
-                    win: result.get(interaction.user.tag) ? result.get(interaction.user.tag).win + 1 : 1,
-                    lose: result.get(interaction.user.tag) ? result.get(interaction.user.tag).lose : 0,
+                result.set(`${interaction.guild.name}-${interaction.user.tag}`, {
+                    win: result.get(`${interaction.guild.name}-${interaction.user.tag}`) ? result.get(`${interaction.guild.name}-${interaction.user.tag}`).win + 1 : 1,
+                    lose: result.get(`${interaction.guild.name}-${interaction.user.tag}`) ? result.get(`${interaction.guild.name}-${interaction.user.tag}`).lose : 0,
                 });
             }else {
                 if (guessedWords.includes(userResponse)) {
@@ -152,9 +152,9 @@ module.exports = interaction => {
                         embedPendu.setTimestamp();
                         interaction.channel.send({ embeds: [embedPendu] });
 
-                        result.set(interaction.user.tag, {
-                            win: result.get(interaction.user.tag) ? result.get(interaction.user.tag).win : 0,
-                            lose: result.get(interaction.user.tag) ? result.get(interaction.user.tag).lose + 1 : 1,
+                        result.set(`${interaction.guild.name}-${interaction.user.tag}`, {
+                            win: result.get(`${interaction.guild.name}-${interaction.user.tag}`) ? result.get(`${interaction.guild.name}-${interaction.user.tag}`).win : 0,
+                            lose: result.get(`${interaction.guild.name}-${interaction.user.tag}`) ? result.get(`${interaction.guild.name}-${interaction.user.tag}`).lose + 1 : 1,
                         });
                         collector.stop();
                     }
@@ -182,9 +182,9 @@ module.exports = interaction => {
 
                         collector.stop();
 
-                        result.set(interaction.user.tag, {
-                            win: result.get(interaction.user.tag) ? result.get(interaction.user.tag).win + 1 : 1,
-                            lose: result.get(interaction.user.tag) ? result.get(interaction.user.tag).lose : 0,
+                        result.set(`${interaction.guild.name}-${interaction.user.tag}`, {
+                            win: result.get(`${interaction.guild.name}-${interaction.user.tag}`) ? result.get(`${interaction.guild.name}-${interaction.user.tag}`).win + 1 : 1,
+                            lose: result.get(`${interaction.guild.name}-${interaction.user.tag}`) ? result.get(`${interaction.guild.name}-${interaction.user.tag}`).lose : 0,
 
                         });
                     }
