@@ -100,10 +100,6 @@ module.exports = interaction => {
                 interaction.channel.send({ embeds: [embedPendu] });
                 collector.stop();
 
-                interaction.channel.messages.fetch({ limit: 100 }).then(messages => {
-                    interaction.channel.bulkDelete(messages);
-                });
-
                 result.set(interaction.user.tag, {
                     win: result.get(interaction.user.tag) ? result.get(interaction.user.tag).win + 1 : 1,
                     lose: result.get(interaction.user.tag) ? result.get(interaction.user.tag).lose : 0,
@@ -155,9 +151,6 @@ module.exports = interaction => {
                         embedPendu.setImage('https://c.tenor.com/BTMPECC4hS4AAAAC/game-over.gif');
                         embedPendu.setTimestamp();
                         interaction.channel.send({ embeds: [embedPendu] });
-                        interaction.channel.messages.fetch({ limit: 100 }).then(messages => {
-                            interaction.channel.bulkDelete(messages);
-                        });
 
                         result.set(interaction.user.tag, {
                             win: result.get(interaction.user.tag) ? result.get(interaction.user.tag).win : 0,
@@ -186,9 +179,6 @@ module.exports = interaction => {
                         embedPendu.setTimestamp();
                         interaction.channel.send({ embeds: [embedPendu] });
 
-                        interaction.channel.messages.fetch({ limit: 100 }).then(messages => {
-                            interaction.channel.bulkDelete(messages);
-                        });
 
                         collector.stop();
 
@@ -205,9 +195,6 @@ module.exports = interaction => {
             embedPendu.setImage('https://c.tenor.com/BTMPECC4hS4AAAAC/game-over.gif');
             embedPendu.setTimestamp();
             interaction.channel.send({ embeds: [embedPendu] });
-            interaction.channel.messages.fetch({ limit: 100 }).then(messages => {
-                interaction.channel.bulkDelete(messages);
-            });
             collector.stop();
         }
 

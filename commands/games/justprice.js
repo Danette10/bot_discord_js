@@ -38,9 +38,6 @@ module.exports = interaction => {
                             embedNumber.setDescription(`Bravo ! Vous avez trouvé le nombre en ${tries} essai(s) !`);
                             embedNumber.setTimestamp();
                             interaction.channel.send({ embeds: [embedNumber] });
-                            interaction.channel.messages.fetch({ limit: 100 }).then(messages => {
-                                interaction.channel.bulkDelete(messages);
-                            });
 
                             if (result.has(interaction.user.tag)) {
                                 result.set(interaction.user.tag, {
@@ -60,9 +57,6 @@ module.exports = interaction => {
                         .setDescription(`Vous avez quitté la partie !`)
                         .setTimestamp();
                     interaction.channel.send({ embeds: [embedNumber] });
-                    interaction.channel.messages.fetch({ limit: 100 }).then(messages => {
-                        interaction.channel.bulkDelete(messages);
-                    });
                     collector.stop();
                 }
 
