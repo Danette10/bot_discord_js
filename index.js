@@ -3,25 +3,46 @@ const { MessageEmbed } = require('discord.js');
 
 // Commandes importées
 
-const roleClaim = require('./utils/role-claim');
-const pendu = require('./commands/pendu');
-const justprice = require('./commands/justprice');
-const server = require('./commands/server');
-const clear = require('./commands/clear');
-const list = require('./commands/list');
-const ban = require('./commands/ban');
-const kick = require('./commands/kick');
-const unban = require('./commands/unban');
-const birthday = require('./commands/birthday');
-const mybirthday = require('./commands/mybirthday');
 const help = require('./commands/help');
-const countMessages = require('./commands/count-messages');
-const winpendu = require('./commands/winpendu');
-const bestjustprice = require('./commands/bestjustprice');
-const testbutton = require('./commands/testbutton');
+
+
+const roleClaim = require('./utils/role-claim');
+
+// Moderations
+
+const server = require('./commands/moderations/server');
+const clear = require('./commands/moderations/clear');
+const list = require('./commands/moderations/list');
+const ban = require('./commands/moderations/ban');
+const kick = require('./commands/moderations/kick');
+const unban = require('./commands/moderations/unban');
+const timeout = require('./commands/moderations/timeout');
+const untimeout = require('./commands/moderations/untimeout');
+const countMessages = require('./commands/moderations/count-messages');
+
+// Birthday
+
+const birthday = require('./commands/birthday/birthday');
+const mybirthday = require('./commands/birthday/mybirthday');
+
+
+// Games
+
+const pendu = require('./commands/games/pendu');
+const justprice = require('./commands/games/justprice');
+const winpendu = require('./commands/games/statgames/winpendu');
+const bestjustprice = require('./commands/games/statgames/bestjustprice');
+
+
+// Test
+
+const testbutton = require('./commands/test/testbutton');
+
+
+// Météo
+
 const meteo = require('./commands/meteo');
-const timeout = require('./commands/timeout');
-const untimeout = require('./commands/untimeout');
+
 
 
 
