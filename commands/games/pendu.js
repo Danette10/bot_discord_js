@@ -6,7 +6,7 @@ module.exports = interaction => {
 
     const words = [
         'pomme',
-   /*     'banane',
+        'banane',
         'orange',
         'cerise',
         'fraise',
@@ -62,7 +62,7 @@ module.exports = interaction => {
         'Taie',
         'Taux',
         'Thym',
-        'Topa',*/
+        'Topa',
     ];
 
     const word = words[Math.floor(Math.random() * words.length)].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
