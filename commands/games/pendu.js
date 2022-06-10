@@ -6,7 +6,7 @@ module.exports = interaction => {
 
     const words = [
         'pomme',
-        'banane',
+   /*     'banane',
         'orange',
         'cerise',
         'fraise',
@@ -62,7 +62,7 @@ module.exports = interaction => {
         'Taie',
         'Taux',
         'Thym',
-        'Topa',
+        'Topa',*/
     ];
 
     const word = words[Math.floor(Math.random() * words.length)].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -185,6 +185,7 @@ module.exports = interaction => {
                         result.set(interaction.user.tag, {
                             win: result.get(interaction.user.tag) ? result.get(interaction.user.tag).win + 1 : 1,
                             lose: result.get(interaction.user.tag) ? result.get(interaction.user.tag).lose : 0,
+
                         });
                     }
                 }
