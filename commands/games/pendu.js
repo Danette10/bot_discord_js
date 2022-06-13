@@ -122,27 +122,27 @@ module.exports = interaction => {
 
                     embedPendu.setDescription(`Lettres déjà essayées : **${guessedLettersUpper}**`);
                     if(tries === 2) {
-                        embedPendu.setImage('https://i.postimg.cc/T37hchZF/pendu-2.png');
+                        embedPendu.setImage('https://i.postimg.cc/mgbTJ8TW/pendu-2.png');
                         embedPendu.setTimestamp();
                         interaction.channel.send({ embeds: [embedPendu] });
                     }else if(tries === 3) {
-                        embedPendu.setImage('https://i.postimg.cc/BvR6dkZC/pendu-3.png');
+                        embedPendu.setImage('https://i.postimg.cc/s2xsDxBn/pendu-3.png');
                         embedPendu.setTimestamp();
                         interaction.channel.send({ embeds: [embedPendu] });
                     }else if(tries === 4) {
-                        embedPendu.setImage('https://i.postimg.cc/5tXyKbJ0/pendu-4.png');
+                        embedPendu.setImage('https://i.postimg.cc/htpKBTGz/pendu-4.png');
                         embedPendu.setTimestamp();
                         interaction.channel.send({ embeds: [embedPendu] });
                     }else if(tries === 5) {
-                        embedPendu.setImage('https://i.postimg.cc/7676D9fr/pendu-5.png');
+                        embedPendu.setImage('https://i.postimg.cc/W4yjDVgs/pendu-5.png');
                         embedPendu.setTimestamp();
                         interaction.channel.send({ embeds: [embedPendu] });
                     }else if(tries === 6) {
-                        embedPendu.setImage('https://i.postimg.cc/4yg33c97/pendu-6.png');
+                        embedPendu.setImage('https://i.postimg.cc/gJ6p87H8/pendu-6.png');
                         embedPendu.setTimestamp();
                         interaction.channel.send({ embeds: [embedPendu] });
                     }else if(tries === 7) {
-                        embedPendu.setImage('https://i.postimg.cc/hv1tQGLC/pendu-7.png');
+                        embedPendu.setImage('https://i.postimg.cc/8cQSHbZ3/pendu-7.png');
                         embedPendu.setTimestamp();
                         interaction.channel.send({embeds: [embedPendu]});
                     }else {
