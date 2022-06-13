@@ -45,12 +45,12 @@ module.exports = interaction => {
                             embedNumber.setTimestamp();
                             interaction.channel.send({ embeds: [embedNumber] });
 
-                            if (result.has(`${interaction.guild.name}-${interaction.user.tag}`)) {
-                                result.set(`${interaction.guild.name}-${interaction.user.tag}`, {
-                                    tried: result.get(`${interaction.guild.name}-${interaction.user.tag}`.tried < tries ? result.get(`${interaction.guild.name}-${interaction.user.tag}`).tried : tries),
+                            if (result.has(`${interaction.user.id}-${interaction.guild.name}-${interaction.user.tag}`)) {
+                                result.set(`${interaction.user.id}-${interaction.guild.name}-${interaction.user.tag}`, {
+                                    tried: result.get(`${interaction.user.id}-${interaction.guild.name}-${interaction.user.tag}`.tried < tries ? result.get(`${interaction.guild.name}-${interaction.user.tag}`).tried : tries),
                                 });
                             }else {
-                                result.set(`${interaction.guild.name}-${interaction.user.tag}`, {
+                                result.set(`${interaction.user.id}-${interaction.guild.name}-${interaction.user.tag}`, {
                                     tried: tries,
                                 });
                             }
