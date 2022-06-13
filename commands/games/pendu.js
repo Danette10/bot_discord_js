@@ -82,7 +82,7 @@ module.exports = interaction => {
     const embedPendu = new MessageEmbed()
         .setColor('#0099ff')
         .setTitle(`Le mot à deviner est : ${hiddenWord}`)
-    embedPendu.setImage('https://i.postimg.cc/Jz4GJjdj/pendu-1.png')
+    embedPendu.setImage('https://i.postimg.cc/XJRpMdvS/pendu-1.png')
     embedPendu.setTimestamp();
     interaction.reply({ embeds: [embedPendu] });
     const filter = (response) => {
