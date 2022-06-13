@@ -4,7 +4,7 @@ module.exports = interaction => {
     let justpriceMember = interaction.justprice.get(interaction.user.tag);
     if(justpriceMember === undefined){
         interaction.reply({
-            content: "Vous n'avez pas encore jouer au juste prix ! Vous pouvez en commencer une en tapant la commande `!justprice`",
+            content: "Vous n'avez pas encore jouer au juste prix ! Vous pouvez en commencer une en tapant la commande `/justprice`",
             ephemeral: true
         });
     }else {
