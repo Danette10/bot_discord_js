@@ -17,7 +17,7 @@ module.exports = interaction => {
 
             let embedMeteo = new MessageEmbed()
                 .setTitle('Météo')
-                .setColor('#ff0000')
+                .setColor('#177a0c')
                 .setThumbnail(`https://openweathermap.org/img/wn/${data.weather[0].icon}.png`)
                 .addField('Ville', data.name)
                 .addField('Température', `${temp}°C`)

@@ -2,7 +2,7 @@ const {MessageEmbed} = require("discord.js");
 const Enmap = require("enmap");
 module.exports = interaction => {
 
-    const result = new Enmap({name: 'resultPendu'});
+    const result = new Enmap({name: 'pendu'});
 
     const words = [
         'pomme',

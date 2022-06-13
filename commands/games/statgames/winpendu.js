@@ -1,6 +1,6 @@
 const Enmap = require("enmap");
 module.exports = interaction => {
-    const result = new Enmap({name: 'resultPendu'});
+    const result = new Enmap({name: 'pendu'});
     let penduMember = result.get(`${interaction.guild.name}-${interaction.user.tag}`);
     if(penduMember === undefined){
         interaction.reply({
