@@ -2,6 +2,8 @@ const {MessageEmbed} = require("discord.js");
 const Enmap = require("enmap");
 module.exports = interaction => {
 
+    const result = new Enmap({name: 'justprice'});
+
     const number = Math.floor(Math.random() * 100) + 1;
 
     let tries = 1;
@@ -37,7 +39,7 @@ module.exports = interaction => {
                             embedNumber.setTimestamp();
                             interaction.channel.send({ embeds: [embedNumber] });
                         } else {
-                            const result = new Enmap({name: 'justprice'});
+
 
                             embedNumber.setDescription(`Bravo ! Vous avez trouvé le nombre en ${tries} essai(s) !`);
                             embedNumber.setTimestamp();

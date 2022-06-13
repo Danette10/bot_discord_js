@@ -85,7 +85,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
     }
 });
 
-client.on('guildMemberAdd', member => {
+/*client.on('guildMemberAdd', member => {
 
     let embedWelcome = new MessageEmbed()
         .setTitle(`Bienvenue sur le serveur ${member.guild.name} !`)
@@ -111,7 +111,7 @@ client.on('guildMemberRemove', member => {
             .setTimestamp()
 
         member.guild.channels.cache.get('981893347759226900').send({ embeds: [embedBye] });
-});
+});*/
 
 client.on('ready', () => {
 
