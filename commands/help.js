@@ -13,7 +13,6 @@ module.exports = interaction => {
             "\n> /kick : Kick un utilisateur" +
             "\n> /timeout: Timeout un utilisateur" +
             "\n> /untimeout: Untimeout un utilisateur" +
-            "\n> /list : Affiche la liste des membres du serveur" +
             "\n> /countmessage : Affiche le nombre de message dans le salon" +
             "\n> /clear : Supprime un nombre de messages" +
             "\n\n**__JEUX__**" +

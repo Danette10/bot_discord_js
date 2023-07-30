@@ -12,7 +12,6 @@ const roleClaim = require('./utils/role-claim');
 
 const server = require('./commands/moderations/server');
 const clear = require('./commands/moderations/clear');
-const list = require('./commands/moderations/list');
 const ban = require('./commands/moderations/ban');
 const kick = require('./commands/moderations/kick');
 const unban = require('./commands/moderations/unban');
@@ -37,14 +36,6 @@ const bestjustprice = require('./commands/games/statgames/bestjustprice');
 // Test
 
 const testbutton = require('./commands/test/testbutton');
-
-
-// Météo
-
-const meteo = require('./commands/meteo');
-
-
-
 
 // Fin des commandes importées
 
@@ -85,34 +76,6 @@ client.on('messageReactionAdd', async (reaction, user) => {
     }
 });
 
-/*client.on('guildMemberAdd', member => {
-
-    let embedWelcome = new MessageEmbed()
-        .setTitle(`Bienvenue sur le serveur ${member.guild.name} !`)
-        .setThumbnail(member.guild.iconURL())
-        .setDescription(`Bienvenue ${member} sur le serveur !`)
-        .setColor('#00ff00')
-        .setImage(member.user.displayAvatarURL())
-        .setTimestamp()
-
-
-    member.guild.channels.cache.get('979796820874100746').send({ embeds: [embedWelcome] });
-
-});
-
-client.on('guildMemberRemove', member => {
-
-        let embedBye = new MessageEmbed()
-            .setTitle(`Au revoir sur le serveur ${member.guild.name} !`)
-            .setThumbnail(member.guild.iconURL())
-            .setDescription(`Au revoir ${member} à très bientôt !`)
-            .setColor('#3b0764')
-            .setImage(member.user.displayAvatarURL())
-            .setTimestamp()
-
-        member.guild.channels.cache.get('981893347759226900').send({ embeds: [embedBye] });
-});*/
-
 client.on('ready', () => {
 
     let birthday = new Enmap({name: 'birthday'});
@@ -145,104 +108,57 @@ client.on('ready', () => {
 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
-
     const { commandName } = interaction;
-
-    if (commandName === 'server') {
-
-        await server(interaction);
-
+    switch (commandName) {
+        case 'server':
+            await server(interaction);
+            break;
+        case 'clear':
+            await clear(interaction);
+            break;
+        case 'ban':
+            await ban(interaction);
+            break;
+        case 'unban':
+            await unban(interaction);
+            break;
+        case 'kick':
+            await kick(interaction);
+            break;
+        case 'birthday':
+            await birthday(interaction);
+            break;
+        case 'mybirthday':
+            await mybirthday(interaction);
+            break;
+        case 'countmessage':
+            await countMessages(interaction);
+            break;
+        case 'winpendu':
+            await winpendu(interaction);
+            break;
+        case 'bestjustprice':
+            await bestjustprice(interaction);
+            break;
+        case 'pendu':
+            await pendu(interaction);
+            break;
+        case 'justprice':
+            await justprice(interaction);
+            break;
+        case 'testbutton':
+            await testbutton(interaction);
+            break;
+        case 'timeout':
+            await timeout(interaction);
+            break;
+        case 'untimeout':
+            await untimeout(interaction);
+            break;
+        case 'help':
+            await help(interaction);
+            break;
     }
-
-    else if(commandName === 'clear'){
-
-        await clear(interaction);
-
-    }
-
-    else if(commandName === 'list'){
-
-        await list(interaction);
-
-    }
-
-    else if(commandName === 'ban') {
-
-        await ban(interaction);
-    }
-
-    else if (commandName === 'unban') {
-
-        await unban(interaction);
-    }
-
-    else if(commandName === 'kick'){
-
-        await kick(interaction);
-    }
-
-    else if(commandName === 'birthday'){
-
-        await birthday(interaction);
-    }
-
-    else if(commandName === 'mybirthday'){
-
-        await mybirthday(interaction);
-    }
-
-    else if(commandName === 'countmessage'){
-
-        await countMessages(interaction);
-    }
-
-    else if(commandName === 'winpendu'){
-
-        await winpendu(interaction);
-
-    }
-
-    else if(commandName === 'bestjustprice'){
-
-        await bestjustprice(interaction);
-    }
-
-    else if(commandName === 'pendu'){
-
-        await pendu(interaction);
-    }
-
-    else if(commandName === 'justprice'){
-
-        await justprice(interaction);
-    }
-
-    else if(commandName === 'testbutton'){
-
-        await testbutton(interaction);
-    }
-
-    else if(commandName === 'meteo'){
-
-        await meteo(interaction);
-    }
-
-    else if(commandName === 'timeout'){
-
-        await timeout(interaction);
-    }
-
-    else if(commandName === 'untimeout'){
-
-        await untimeout(interaction);
-    }
-
-
-    else if(commandName === 'help'){
-
-        await help(interaction);
-    }
-
 });
 
 // Login to Discord with your client's token

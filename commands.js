@@ -40,10 +40,6 @@ const commands = [
         ),
 
     new SlashCommandBuilder()
-        .setName('list')
-        .setDescription('Liste les membres du serveur !'),
-
-    new SlashCommandBuilder()
         .setName('unban')
         .setDescription('Unban un utilisateur !')
         .addStringOption(option =>
@@ -111,15 +107,6 @@ const commands = [
     new SlashCommandBuilder()
         .setName('testbutton')
         .setDescription('Test !'),
-
-    new SlashCommandBuilder()
-        .setName('meteo')
-        .setDescription('Affiche la météo !')
-        .addStringOption(option =>
-            option.setName('city')
-                .setDescription('Ville de la météo !')
-                .setRequired(true)
-        ),
 
     new SlashCommandBuilder()
         .setName('timeout')
