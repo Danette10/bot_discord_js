@@ -68,19 +68,6 @@ const commands = [
         ),
 
     new SlashCommandBuilder()
-        .setName('birthday')
-        .setDescription('Enregistre ton anniversaire !')
-        .addStringOption(option =>
-            option.setName('birthday')
-                .setDescription('Votre anniversaire !')
-                .setRequired(true)
-        ),
-
-    new SlashCommandBuilder()
-        .setName('mybirthday')
-        .setDescription('Affiche ton anniversaire !'),
-
-    new SlashCommandBuilder()
         .setName('countmessage')
         .setDescription('Compte le nombre de messages dans le salon !'),
 

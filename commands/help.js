@@ -1,6 +1,5 @@
 const {MessageEmbed} = require("discord.js");
 module.exports = interaction => {
-    // Affiche la liste des commandes
     let helpEmbed = new MessageEmbed()
         .setTitle('Liste des commandes')
         .setColor('#0099ff')
@@ -20,9 +19,6 @@ module.exports = interaction => {
             "\n> /justprice : Joue au juste prix" +
             "\n> /winpendu : Affiche le nombre de parties gagnées au pendu" +
             "\n> /bestjustprice : Affiche le meilleur score au juste prix" +
-            "\n\n**__AUTRES__**" +
-            "\n\n> /birthday : Enregistre votre anniversaire" +
-            "\n> /mybirthday : Affiche votre anniversaire" +
             ")")
         .setTimestamp()
         .setFooter({text: 'Commandes disponibles'});
